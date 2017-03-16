@@ -8,8 +8,8 @@
 
     var game = [];
     var TEAMS = {
-      X: 'x',
-      O: 'o',
+      X: 'X',
+      O: 'O',
       EMPTY: ''
     }
 
@@ -32,6 +32,7 @@
 
       return $http({
         url: 'http://127.0.0.1:8080/jerseybackend/rest/hellocors',
+        //url: 'https://triflixbackend.herokuapp.com/jerseybackend/rest/hellocors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' //request
