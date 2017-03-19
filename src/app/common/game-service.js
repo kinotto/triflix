@@ -12,17 +12,15 @@
       O: 'O',
       EMPTY: ''
     }
-
-    for(var i = 0; i < TABLE_NR; i++){
-      game[i] = {};
-      game[i].team = TEAMS.X;
-      game[i].state = ['','','','','','','','',''];
-      game[i].winner = {};
+    function init(){
+      for(var i = 0; i < TABLE_NR; i++){
+        game[i] = {};
+        game[i].team = TEAMS.X;
+        game[i].state = ['','','','','','','','',''];
+        game[i].winner = {};
+      }
     }
-
-    (function(game){ //init
-
-    }(game))
+    init();
 
     this.TEAMS = TEAMS;
 
@@ -42,7 +40,13 @@
         //dataType: 'json', //response
         //contentType: 'application/json' //request
       });
+    }
 
+    this.restart = function(){
+      game.forEach(function(g){
+        g.state = ['','','','','','','','',''];
+        g.winner = {};
+      })
 
     }
 

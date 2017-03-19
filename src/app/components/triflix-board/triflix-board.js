@@ -12,7 +12,7 @@
   triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game', '$rootScope', '$uibModal'];
 
   function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal){
-    var game, previous;
+    var game, previous, self = this;
 
     this.$onInit = function(){
       game = Game.getStatus()[this.index];
@@ -30,12 +30,20 @@
         game.state[x + (y*3)] = game.team;
         Game.AImove(game)
         .then(function(resp){
-          _.extend(game.state, resp.data.state);
-          if(resp.data.winner.team){
+          _.extend(game, resp.data);
+          if(game.winner.team){
             $rootScope.$emit('triflix.game.victory');
-            $uibModal.open({
+            var victoryModal = $uibModal.open({
               animation: true,
-              component: 'victoryModal'
+              component: 'victoryModal',
+              resolve: {
+                game: [function(){
+                  return self.game;
+                }]
+              }
+            })
+            victoryModal.result.catch(function(dismissed){
+              Game.restart();
             })
           }
 
