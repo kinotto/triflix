@@ -1,4 +1,4 @@
-(function(){
+;(function(){
   angular.module('triflix')
   .config(config)
   .constant('TABLE_NR', 9)

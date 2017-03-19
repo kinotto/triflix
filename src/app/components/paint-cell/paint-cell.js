@@ -1,4 +1,4 @@
-(function(){
+;(function(){
   angular.module('triflix')
   .component('paintCell', {
     bindings: {
@@ -9,12 +9,16 @@
     controllerAs: 'paint'
   });
 
-  paintCellCtrl.$inject = ['$element', '$compile', 'Game', '$rootScope'];
+  paintCellCtrl.$inject = ['$element', '$compile', 'Game', '$rootScope', 'ScrollReveal', '$timeout'];
 
-  function paintCellCtrl($element, $compile, Game, $rootScope){
+  function paintCellCtrl($element, $compile, Game, $rootScope, ScrollReveal, $timeout){
 
     var previousVal = this.cell;
-
+    var animation = {
+      distance: '0px',
+      duration: 1000,
+      scale: 0.7
+    }
     this.$doCheck = function(){
       if(this.cell !== previousVal){
         if(this.cell === Game.TEAMS.X){
@@ -27,7 +31,10 @@
     }
 
     $rootScope.$on('triflix.game.victory', function(evt, data){
-      $element.hide();
+      $timeout(function(){
+        ScrollReveal.reveal($element[0], animation);
+      })
+
     })
 
   }

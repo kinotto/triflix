@@ -1,4 +1,4 @@
-(function(){
+;(function(){
   angular.module('triflix')
   .component('triflixBoard', {
     bindings: {
@@ -9,9 +9,9 @@
     controllerAs: 'board'
   });
 
-  triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game', '$rootScope'];
+  triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game', '$rootScope', '$uibModal'];
 
-  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope){
+  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal){
     var game, previous;
 
     this.$onInit = function(){
@@ -33,6 +33,10 @@
           _.extend(game.state, resp.data.state);
           if(resp.data.winner.team){
             $rootScope.$emit('triflix.game.victory');
+            $uibModal.open({
+              animation: true,
+              component: 'victoryModal'
+            })
           }
 
         }, function(err){

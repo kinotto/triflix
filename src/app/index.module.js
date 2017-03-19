@@ -1,8 +1,10 @@
-(function(){
+;(function(){
   'use strict';
 
   angular.module('triflix', [
-    'ui.router'
+    'ui.router',
+    'ngScrollReveal',
+    'ui.bootstrap'
   ])
 
 
