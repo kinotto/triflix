@@ -1,37 +1,37 @@
 <div class="row triflixboard">
-  <div class="col-sm-12">
+
     <div class="table-responsive">
-      <table id="gameTable" class="table table-bordered">
+      <table id="gameTable" class="table table-bordered triflixboard--table">
         <tr>
-          <td id="index0" ng-click="board.makeMove(0,0)">
+          <td ng-click="board.makeMove(0,0)">
             <paint-cell class="content" game="board.game" cell="board.game.state[0]"></paint-cell>
           </td>
-          <td id="index3" ng-click="board.makeMove(0,1)">
+          <td ng-click="board.makeMove(0,1)">
             <paint-cell class="content" game="board.game" cell="board.game.state[3]"></paint-cell>
           </td>
-          <td id="index6" ng-click="board.makeMove(0,2)">
+          <td ng-click="board.makeMove(0,2)">
             <paint-cell class="content" game="board.game" cell="board.game.state[6]"></paint-cell>
           </td>
         </tr>
         <tr>
-          <td id="index1" ng-click="board.makeMove(1,0)">
+          <td ng-click="board.makeMove(1,0)">
             <paint-cell class="content" game="board.game" cell="board.game.state[1]"></paint-cell>
           </td>
-          <td id="index4" ng-click="board.makeMove(1,1)">
+          <td ng-click="board.makeMove(1,1)">
             <paint-cell class="content" game="board.game" cell="board.game.state[4]"></paint-cell>
           </td>
-          <td id="index7" ng-click="board.makeMove(1,2)">
+          <td ng-click="board.makeMove(1,2)">
             <paint-cell class="content" game="board.game" cell="board.game.state[7]"></paint-cell>
           </td>
         </tr>
         <tr>
-          <td id="index2" ng-click="board.makeMove(2,0)">
+          <td ng-click="board.makeMove(2,0)">
             <paint-cell class="content" game="board.game" cell="board.game.state[2]"></paint-cell>
           </td>
-          <td id="index5" ng-click="board.makeMove(2,1)">
+          <td ng-click="board.makeMove(2,1)">
             <paint-cell class="content" game="board.game" cell="board.game.state[5]"></paint-cell>
           </td>
-          <td id="index8" ng-click="board.makeMove(2,2)">
+          <td ng-click="board.makeMove(2,2)">
             <paint-cell class="content" game="board.game" cell="board.game.state[8]"></paint-cell>
           </td>
         </tr>
@@ -40,5 +40,5 @@
       </table>
     </div>
 
-  </div>
+
 </div>

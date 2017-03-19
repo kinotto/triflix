@@ -1,0 +1,32 @@
+.table-bordered > tbody > tr > td {
+  //border: 1px solid #ddd;
+  //border-spacing: 0;
+}
+
+table{
+  margin-bottom: 0px !important;
+  border: 3px solid #ddd !important;
+  border-radius: 15px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/*table tr:last-child td:first-child {
+    border-left: none;
+    border-bottom: none;
+}
+
+table tr:last-child td:last-child {
+    border-right: none;
+    border-bottom: none;
+}
+
+table tr:first-child td:first-child {
+  border-left: none;
+  border-top: none;
+}
+
+table tr:first-child td:last-child {
+  border-right: none;
+  border-top: none;
+}*/

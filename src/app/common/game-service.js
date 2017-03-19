@@ -17,6 +17,7 @@
       game[i] = {};
       game[i].team = TEAMS.X;
       game[i].state = ['','','','','','','','',''];
+      game[i].winner = {};
     }
 
     (function(game){ //init
@@ -31,8 +32,8 @@
     this.AImove = function(game){
 
       return $http({
-        url: 'http://127.0.0.1:8080/jerseybackend/rest/hellocors',
-        //url: 'https://triflixbackend.herokuapp.com/jerseybackend/rest/hellocors',
+        //url: 'http://127.0.0.1:8080/jerseybackend/rest/hellocors',
+        url: 'https://triflixbackend.herokuapp.com/rest/hellocors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' //request
