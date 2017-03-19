@@ -9,7 +9,8 @@
     controllerAs: 'board'
   });
 
-  triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game', '$rootScope', '$uibModal'];
+  triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game',
+  '$rootScope', '$uibModal'];
 
   function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal){
     var game, previous, self = this;
@@ -26,6 +27,9 @@
     }
 
     this.makeMove = function(x, y){
+      if(Game.lockBoard){
+        return;
+      }
       if(game.state[x + (y*3)] === ''){
         game.state[x + (y*3)] = game.team;
         Game.AImove(game)

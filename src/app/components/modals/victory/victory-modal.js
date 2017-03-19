@@ -4,7 +4,7 @@
     bindings: {
       resolve: '<'
     },
-    templateUrl: 'app/components/modals/victoryModal/victory-modal.html',
+    templateUrl: 'app/components/modals/victory/victory-modal.html',
     controller: VictoryModalCtrl,
     controllerAs: 'victory'
   })
@@ -21,7 +21,7 @@
     else
       self.winnerImg = 'assets/images/o.png';
 
-  
+
     self.$postLink = function(){
 
     }

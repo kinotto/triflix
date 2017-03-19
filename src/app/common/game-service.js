@@ -12,6 +12,10 @@
       O: 'O',
       EMPTY: ''
     }
+    var IMAGES = {
+      X: 'assets/images/x.png',
+      O: 'assets/images/o.png'
+    }
     function init(){
       for(var i = 0; i < TABLE_NR; i++){
         game[i] = {};
@@ -23,6 +27,8 @@
     init();
 
     this.TEAMS = TEAMS;
+    this.IMAGES = IMAGES;
+    this.lockBoard = true;
 
     this.getStatus = function(){
       return game;
@@ -48,6 +54,12 @@
         g.winner = {};
       })
 
+    }
+
+    this.chooseTeam = function(team){
+      game.forEach(function(g){
+        g.team = team;
+      })
     }
 
   }

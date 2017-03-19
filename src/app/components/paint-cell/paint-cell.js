@@ -18,9 +18,9 @@
     this.$doCheck = function(){
       if(this.cell !== previousVal){
         if(this.cell === Game.TEAMS.X){
-          $element.css('background-image', 'url(\'assets/images/x.png\')');
+          $element.css('background-image', 'url('+Game.IMAGES.X+')');
         } else if(this.cell === Game.TEAMS.O){
-          $element.css('background-image', 'url(\'assets/images/o.png\')');
+          $element.css('background-image', 'url('+Game.IMAGES.O+')');
         } else if(this.cell === Game.TEAMS.EMPTY){
           $element.css('background-image', 'none');
         }
