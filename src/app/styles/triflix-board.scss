@@ -1,3 +1,108 @@
+// TODO: PER IL MOMENTO è TUTTO INSIEME - POI SPLITTO IN VARI FILE
+
+$col1: #2A2C2B;
+$col2: #FFFAD5;
+$col3: #FFD34E;
+$col4: #DB9E36;
+$col5: #DC3522;
+
+@import url('https://fonts.googleapis.com/css?family=Pattaya');
+
+* {box-sizing: border-box;}
+
+body {
+  background: radial-gradient(ellipse at center, $col1 0%, darken($col1, 10%) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.header {
+
+  color: $col2;
+  text-align: center;
+  margin-bottom: 50px;
+
+  h1 {
+    font-size: 80px;
+    font-family: 'Pattaya', sans-serif;
+  }
+  p{
+    font-family: arial;
+    line-height: 21px
+  }
+}
+
+// component board
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+
+
+  &__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.3%;
+    height: 33.3%;
+    border-right: 1px solid $col1;
+    border-bottom: 1px solid $col1;
+    box-shadow: inset -1px -1px 0 0 darken($col1, 8%);
+    transition: background 250ms 300ms;
+    cursor: not-allowed;
+
+    &:hover:not(.board__cell--selected) {
+      cursor: pointer;
+      background: lighten($col1, 2%);
+    }
+
+    &:nth-child(3n + 3) {
+      border-right: 0;
+      box-shadow: inset 0 -1px 0 0 darken($col1, 8%);
+    }
+
+    &:nth-child(n+7) {
+      border-bottom: 0;
+      box-shadow: inset -1px 0 0 0 darken($col1, 8%);
+    }
+
+    &:last-child {
+      box-shadow: none;
+    }
+  }
+}
+
+
+
+.icon {
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+
+  .board__cell--selected & {
+    opacity: 1;
+  }
+
+  .board__cell--o & {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle stroke='#DC3522' stroke-width='14' fill='transparent' cx='50' cy='50' r='43' /></svg>") center center  no-repeat;
+  }
+
+  .board__cell--x & {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon fill='#DB9E36' fill-rule='nonzero' points='100 11.5399943 88.4595969 0 50.0001022 38.4599035 11.5404031 0 0 11.5399943 38.4596991 50.0001022 0 88.4595969 11.5406074 100 50.0001022 61.5403009 88.4595969 100 99.9997956 88.4595969 61.5403009 50.0001022'></polygon></svg>") center center  no-repeat;
+  }
+}
+
+
+/*
+
 body{
   background: #AFB4CA;
   font-family: Lato, sans-serif;
@@ -60,3 +165,4 @@ body{
 
 
 }
+*/
