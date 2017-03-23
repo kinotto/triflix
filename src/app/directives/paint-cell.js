@@ -1,6 +1,7 @@
 ;(function(){
   angular.module('triflix')
   .directive('paintCell', ['Game', function(Game){
+    /*paint a single cell on the board*/
     var ddo = {
       scope: {
         cell: '=paintCell',
