@@ -30,7 +30,7 @@
       if(Game.lockBoard){
         return;
       }
-      if(game.state[x + (y*3)] === ''){
+      if(game.state[x + (y*3)] === Game.TEAMS.EMPTY){
         game.state[x + (y*3)] = game.team;
         Game.AImove(game)
         .then(function(resp){
@@ -48,6 +48,7 @@
             })
             victoryModal.result.catch(function(dismissed){
               Game.restart();
+              $rootScope.$emit('triflix.game.start');
             })
           }
 
@@ -58,42 +59,7 @@
     }
 
 
-    this.$postLink = function(){
-      //var td_els = $element.find('td');
-      //var tdWidth = td_els.first().width();
-      //td_els.css('height', tdWidth);
-
-      /*var overlayHtml =
-      '<div class="triflixboard--overlay">'+
-        '<div style="text-align: center; position: relative; width: 100%; height: 100%;">'+
-          '<img class="triflixboard--overlay--locker" alt="no image" ng-src="assets/images/locker.png"/>'+
-        '</div>'+
-      '</div>';
-      overlayHtml = angular.element(overlayHtml);
-
-      var table =   $element.find('table').first();
-      table.addClass('triflixboard--table');
-      table.append($compile(overlayHtml)($scope));
-
-
-      table.on('click', function(){
-        overlayHtml.fadeOut("300", function(){})
-      })*/
-      var table =   $element.find('table').first();
-      //table.addClass('triflixboard--table');
-
-      var rows = table.children().first().children();
-      for(var i = 0; i < rows.length; i++){
-        if(i === 0){ //first row
-          $(rows[i]).children().css('border-top', 'none');
-        }
-        if(i === rows.length - 1){ //last row
-          $(rows[i]).children().css('border-bottom', 'none');
-        }
-        $(rows[i]).children().first().css('border-left', 'none');
-        $(rows[i]).children().last().css('border-right', 'none');
-      }
-    }
+    this.$postLink = function(){}
 
 
   }

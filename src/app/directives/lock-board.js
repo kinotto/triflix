@@ -1,6 +1,6 @@
 ;(function(){
   angular.module('triflix')
-  .directive('lockBoard', ['$uibModal', 'Game', function($uibModal, Game){
+  .directive('lockBoard', ['$uibModal', 'Game', '$rootScope', function($uibModal, Game, $rootScope){
     var ddo = {
 
       link: function(scope, elem, attrs){
@@ -17,6 +17,7 @@
           modal.result.then(function(res){
             elem.off('click', fn);
             Game.lockBoard = false; //unlock board
+            $rootScope.$emit('triflix.game.start');
           })
           .catch(function(res){
 

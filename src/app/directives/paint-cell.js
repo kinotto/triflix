@@ -1,6 +1,33 @@
 ;(function(){
   angular.module('triflix')
-  .component('paintCell', {
+  .directive('paintCell', ['Game', function(Game){
+    var ddo = {
+      scope: {
+        cell: '=paintCell',
+        game: '='
+      },
+      link: function(scope, elem, attrs){
+        var icon = angular.element('<span class="icon animated tada"></span>');
+        scope.$watch('cell', function(){
+          if(scope.cell === Game.TEAMS.O){
+            elem.addClass('board__cell--selected board__cell--o');
+            elem.append(icon);
+          } else if(scope.cell === Game.TEAMS.X){
+            elem.addClass('board__cell--selected board__cell--x');
+            elem.append(icon);
+          }
+
+        })
+
+
+      }
+    }
+    return ddo;
+  }])
+
+
+
+  /*.component('paintCell', {
     bindings: {
       cell: '<',
       game: '<'
@@ -65,5 +92,5 @@
 
     }
 
-  }
+  }*/
 }())
