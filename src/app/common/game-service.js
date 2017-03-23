@@ -12,14 +12,14 @@
       O: 'O',
       EMPTY: ''
     }
-    var IMAGES = {
-      X: 'assets/images/x.png',
-      O: 'assets/images/o.png'
+    var ANIMATIONS = {
+      X: 'tada',
+      O: 'bounceIn'
     }
     function init(){
       for(var i = 0; i < TABLE_NR; i++){
         game[i] = {};
-        game[i].team = TEAMS.X;
+        game[i].team = TEAMS.X; //default team
         game[i].state = ['','','','','','','','',''];
         game[i].winner = {};
       }
@@ -27,7 +27,7 @@
     init();
 
     this.TEAMS = TEAMS;
-    this.IMAGES = IMAGES;
+    this.ANIMATIONS = ANIMATIONS;
     this.lockBoard = true;
 
     this.getStatus = function(){
@@ -42,8 +42,6 @@
           'Content-Type': 'application/json' //request
         },
         data: JSON.stringify(eval(game))
-        //dataType: 'json', //response
-        //contentType: 'application/json' //request
       });
     }
 
@@ -62,4 +60,4 @@
     }
 
   }
-}())
+})();

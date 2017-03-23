@@ -1,6 +1,6 @@
 ;(function(){
   angular.module('triflix')
-  .directive('paintCell', ['Game', function(Game){
+  .directive('paintCell', ['Game', '$compile', function(Game, $compile){
     /*paint a single cell on the board*/
     var ddo = {
       scope: {
@@ -8,15 +8,13 @@
         game: '='
       },
       link: function(scope, elem, attrs){
-        var icon = angular.element('<span class="icon animated tada"></span>');
-        scope.$watch('cell', function(){
-          if(scope.cell === Game.TEAMS.O){
-            elem.addClass('board__cell--selected board__cell--o');
-            elem.append(icon);
-          } else if(scope.cell === Game.TEAMS.X){
-            elem.addClass('board__cell--selected board__cell--x');
-            elem.append(icon);
-          }
+        var icon = angular.element('<span class="icon animated {{iconEffect}}"></span>');
+
+        scope.$watch('cell', function(newVal){
+          if(!newVal) return;
+          scope.iconEffect = Game.ANIMATIONS[scope.cell] || 'bounceIn';
+          elem.addClass('board__cell--selected board__cell--'+scope.cell.toLowerCase());
+          elem.append($compile(icon)(scope));
 
         })
 
@@ -94,4 +92,4 @@
     }
 
   }*/
-}())
+})();

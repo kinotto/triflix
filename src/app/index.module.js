@@ -7,7 +7,7 @@
     'ui.bootstrap'
   ])
 
-  .constant('TABLE_NR', 9)
+  .constant('TABLE_NR', 2)
   .constant('ApiPath', {
     game: {
       local: 'http://127.0.0.1:8080/jerseybackend/rest/game',
@@ -16,4 +16,4 @@
   });
 
 
-}())
+})();

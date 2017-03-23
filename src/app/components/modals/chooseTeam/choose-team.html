@@ -3,15 +3,10 @@
       <h3 class="triflix-modal--title">Choose a team</h3>
   </div>
   <div class="triflix-modal--body">
-    <div class="table-responsive">
-      <table id="gameTable" class="table table-bordered">
-        <tr>
-          <td ng-repeat="(team, img) in chooseTeam.images" ng-click="chooseTeam.choose(team)"
-          style="cursor: pointer">
-            <img ng-src="{{img}}" alt="no img" />
-          </td>
-        </tr>
-      </table>
+
+    <div ng-repeat="team in chooseTeam.teams" ng-click="chooseTeam.choose(team)">
+      <span svg-icon="{{team}}-icon" width="64"></span>
     </div>
+
   </div>
 </div>

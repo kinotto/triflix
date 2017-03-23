@@ -14,8 +14,9 @@
 
   function ChooseTeamModalCtrl(Game){
     var self = this;
-    self.images = Game.IMAGES;
+    //self.images = Game.IMAGES;
 
+    self.teams = Game.TEAMS;
     self.choose = function(team){
       Game.chooseTeam(team);
       self.modalInstance.close(team);
@@ -25,4 +26,4 @@
 
     }
   }
-}())
+})();
