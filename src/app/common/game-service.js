@@ -2,9 +2,9 @@
   angular.module('triflix')
   .service('Game', Game);
 
-  Game.$inject = ['$http', 'TABLE_NR', '$timeout'];
+  Game.$inject = ['$http', 'TABLE_NR', '$timeout', 'ApiPath'];
 
-  function Game($http, TABLE_NR, $timeout){
+  function Game($http, TABLE_NR, $timeout, ApiPath){
 
     var game = [];
     var TEAMS = {
@@ -36,8 +36,7 @@
     this.AImove = function(game){
 
       return $http({
-        //url: 'http://127.0.0.1:8080/jerseybackend/rest/hellocors',
-        url: 'https://triflixbackend.herokuapp.com/rest/hellocors',
+        url: ApiPath.game.remote,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' //request

@@ -1,8 +1,6 @@
 ;(function(){
   angular.module('triflix')
-  .config(config)
-  .constant('TABLE_NR', 9)
-
+  .config(config);
 
   function config($stateProvider, $urlRouterProvider){
     $stateProvider
