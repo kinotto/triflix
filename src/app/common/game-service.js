@@ -2,9 +2,9 @@
   angular.module('triflix')
   .service('Game', Game);
 
-  Game.$inject = ['$http', 'TABLE_NR', '$timeout', 'ApiPath'];
+  Game.$inject = ['$http', 'TABLE_NR', '$timeout', 'ApiPath', '$q'];
 
-  function Game($http, TABLE_NR, $timeout, ApiPath){
+  function Game($http, TABLE_NR, $timeout, ApiPath, $q){
 
     var game = [];
     var TEAMS = {
@@ -34,15 +34,29 @@
       return game;
     }
     this.AImove = function(game){
-
-      return $http({
+      var deferred = $q.defer();
+      $timeout(function(){
+        var tictactoe = new TicTacToe.TicTacToeBoard(game.state);
+        var aiPlayer = new TicTacToe.TicTacToeAIPlayer();
+        var aiTeam = tictactoe.oppositePlayer(game.team);
+        aiPlayer.initialize(aiTeam, tictactoe);
+        var move = aiPlayer.makeMove();
+        if(move != null){
+          tictactoe.makeMove(aiTeam, move);
+        } else  {
+          deferred.reject('invalid move');
+        }
+        deferred.resolve({data: tictactoe.board});
+      })
+      return deferred.promise;
+      /*return $http({
         url: ApiPath.game.remote,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' //request
         },
         data: JSON.stringify(eval(game))
-      });
+      });*/
     }
 
     this.restart = function(){
