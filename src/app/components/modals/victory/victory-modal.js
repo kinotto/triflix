@@ -9,9 +9,9 @@
     controllerAs: '$ctrl'
   })
 
-  VictoryModalCtrl.$inject = ['Game', '$window'];
+  VictoryModalCtrl.$inject = ['Game'];
 
-  function VictoryModalCtrl(Game, $window){
+  function VictoryModalCtrl(Game){
     var self = this;
 
     self.game = self.resolve.game;

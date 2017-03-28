@@ -33,22 +33,24 @@
     this.getStatus = function(){
       return game;
     }
+    var tictactoewrapper = new TicTacToeWrapper();
+
     this.AImove = function(game){
       var deferred = $q.defer();
       $timeout(function(){
-        var tictactoe = new TicTacToe.TicTacToeBoard(game.state);
-        var aiPlayer = new TicTacToe.TicTacToeAIPlayer();
-        var aiTeam = tictactoe.oppositePlayer(game.team);
-        aiPlayer.initialize(aiTeam, tictactoe);
-        var move = aiPlayer.makeMove();
-        if(move != null){
-          tictactoe.makeMove(aiTeam, move);
-        } else  {
-          deferred.reject('invalid move');
+        try{
+          var result = tictactoewrapper.makeMove(game);
+          deferred.resolve(result);
         }
-        deferred.resolve({data: tictactoe.board});
+        catch(error){
+          deferred.reject(error);
+        }
       })
       return deferred.promise;
+
+    }
+
+    this.aiMoveRemote = function(){
       /*return $http({
         url: ApiPath.game.remote,
         method: 'POST',
@@ -58,7 +60,6 @@
         data: JSON.stringify(eval(game))
       });*/
     }
-
     this.restart = function(){
       game.forEach(function(g){
         g.state = ['','','','','','','','',''];
@@ -73,5 +74,8 @@
       })
     }
 
+    this.flatCoordinate = function(x, y){
+      return x + (y * 3);
+    }
   }
 })();

@@ -27,11 +27,12 @@
     }
 
     this.makeMove = function(x, y){
+      var flatCoordinate = Game.flatCoordinate(x, y);
       if(Game.lockBoard){
         return;
       }
-      if(game.state[x + (y*3)] === Game.TEAMS.EMPTY){
-        game.state[x + (y*3)] = game.team;
+      if(game.state[flatCoordinate] === Game.TEAMS.EMPTY){
+        game.state[flatCoordinate] = game.team;
         Game.AImove(game)
         .then(function(resp){
           _.extend(game, resp.data);
@@ -52,9 +53,10 @@
             })
           }
 
-        }, function(err){
-          console.log(err);
-        });
+        })
+        .catch(function(error){
+          console.log(error);
+        })
       }
     }
 
