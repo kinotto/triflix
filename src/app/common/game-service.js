@@ -6,6 +6,7 @@
 
   function Game($http, TABLE_NR, $timeout, ApiPath, $q){
 
+    var ticTacToeWrapper = new TicTacToeWrapper(); //wrapper for tictactoeAI.js
     var game = [];
     var TEAMS = {
       X: 'X',
@@ -33,13 +34,13 @@
     this.getStatus = function(){
       return game;
     }
-    var tictactoewrapper = new TicTacToeWrapper();
+
 
     this.AImove = function(game){
       var deferred = $q.defer();
       $timeout(function(){
         try{
-          var result = tictactoewrapper.makeMove(game);
+          var result = ticTacToeWrapper.makeMove(game);
           deferred.resolve(result);
         }
         catch(error){
@@ -51,14 +52,14 @@
     }
 
     this.aiMoveRemote = function(){
-      /*return $http({
+      return $http({
         url: ApiPath.game.remote,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' //request
         },
         data: JSON.stringify(eval(game))
-      });*/
+      });
     }
     this.restart = function(){
       game.forEach(function(g){
