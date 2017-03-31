@@ -1,14 +1,6 @@
-// TODO: PER IL MOMENTO è TUTTO INSIEME - POI SPLITTO IN VARI FILE
-
-$col1: #2A2C2B;
-$col2: #FFFAD5;
-$col3: #FFD34E;
-$col4: #DB9E36;
-$col5: #DC3522;
-
-@import url('https://fonts.googleapis.com/css?family=Pattaya');
 
 * {box-sizing: border-box;}
+
 
 body {
   background: radial-gradient(ellipse at center, $col1 0%, darken($col1, 10%) 100%);
@@ -20,21 +12,7 @@ body {
   flex-wrap: nowrap;
 }
 
-.header {
 
-  color: $col2;
-  text-align: center;
-  margin-bottom: 50px;
-
-  h1 {
-    font-size: 80px;
-    font-family: 'Pattaya', sans-serif;
-  }
-  p{
-    font-family: arial;
-    line-height: 21px
-  }
-}
 
 // component board
 .board {

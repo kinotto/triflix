@@ -17,6 +17,19 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
+ *  // injector
+ *  // endinjector
  */
-// injector
-// endinjector
+
+
+//Abstracts
+@import "styles/abstracts/variables.scss"
+
+//Base
+@import "styles/base/typography.scss"
+
+//Layout
+@import "styles/layout/header.scss"
+
+//Components
+@import "styles/components/triflix-board.scss"
