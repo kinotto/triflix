@@ -20,7 +20,8 @@
     "moment": "~2.10.6",
     "ngScrollReveal": "*",
     "underscore": "^1.8.3",
-    "tictactoe-ai": "^1.0.3"
+    "tictactoe-ai": "^1.0.3",
+    "bootstrap-social": "^5.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

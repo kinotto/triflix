@@ -9,7 +9,7 @@
   function homeController($scope, PanelService, $timeout){
     $timeout(function(){
       PanelService.open({
-        component: 'board',
+        component: 'login',
         scope: $scope
       });
     })

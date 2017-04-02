@@ -29,7 +29,7 @@
         cb: close
       },
       avatar: {
-        text: 'img'
+        url: 'assets/images/fb-profile.gif'
       },
       forward: {
         text: 'avanti',

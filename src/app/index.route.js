@@ -2,7 +2,10 @@
   angular.module('triflix')
   .config(config);
 
-  function config($stateProvider, $urlRouterProvider){
+  config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
+  function config($stateProvider, $urlRouterProvider, $httpProvider){
+    $httpProvider.defaults.withCredentials = true;
+
     $stateProvider
       .state('home', {
         url: '/',

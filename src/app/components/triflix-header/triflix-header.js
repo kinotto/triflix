@@ -25,21 +25,27 @@
 
       if(this.params.back){
         var backEl = angular.element(back);
-        backEl.attr('ng-click', 'header.params.back.cb()');
-        backEl.html(this.params.back.text);
+        var btn = angular.element('<div class="btn btn-warning col-xs-6"></div>');
+        btn.attr('ng-click', 'header.params.back.cb()');
+        btn.html(this.params.back.text);
+        backEl.append(btn);
         mainEl.append(backEl);
       }
       if(this.params.avatar){
         var avatarEl = angular.element(avatar);
         avatarEl.addClass('text-center');
-        avatarEl.html(this.params.avatar.text);
+        var img = angular.element('<img class="img-rounded" width=64 height=32 />');
+        img.attr('src', this.params.avatar.url);
+        avatarEl.append(img);
+        //avatarEl.html(this.params.avatar.url);
         mainEl.append(avatarEl);
       }
       if(this.params.forward){
         var forwardEl = angular.element(forward);
-        forwardEl.addClass('text-right');
-        forwardEl.html(this.params.forward.text);
-        forwardEl.attr('ng-click', 'header.params.forward.cb()');
+        var btn = angular.element('<div class="btn btn-warning col-xs-6 pull-right"></div>');
+        btn.attr('ng-click', 'header.params.forward.cb()');
+        btn.html(this.params.forward.text);
+        forwardEl.append(btn);
         mainEl.append(forwardEl);
       }
 
