@@ -4,9 +4,15 @@
   angular.module('triflix')
   .controller('HomeController', homeController);
 
-  homeController.$inject = [];
+  homeController.$inject = ['$scope', 'PanelService', '$timeout'];
 
-  function homeController(){
+  function homeController($scope, PanelService, $timeout){
+    $timeout(function(){
+      PanelService.open({
+        component: 'board',
+        scope: $scope
+      });
+    })
 
   }
 })();

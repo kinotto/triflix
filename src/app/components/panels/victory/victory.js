@@ -4,7 +4,7 @@
     bindings: {
       resolve: '<'
     },
-    templateUrl: 'app/components/modals/victory/victory-modal.html',
+    templateUrl: 'app/components/panels/victory/victory.html',
     controller: VictoryModalCtrl,
     controllerAs: '$ctrl'
   })
