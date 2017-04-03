@@ -4,10 +4,15 @@
     <p>Cras ultricies ligula sed magna dictum porta.</p>
   </div>
   <div class="col-sm-4 col-sm-offset-4">
-    <a class="btn btn-block btn-social btn-facebook" ng-click="login.login()"
+    <a class="btn btn-block btn-social btn-facebook"
     ng-href="https://triflixbe.herokuapp.com/auth/facebook">
       <span class="fa fa-facebook"></span>
       Sign in with Facebook
+    </a>
+  </div>
+  <div class="col-sm-offset-4 col-sm-4" ng-click="login.continueNotLogged()">
+    <a class="pull-right" style="font-size:13px" href="" >
+      continue without login
     </a>
   </div>
 </div>

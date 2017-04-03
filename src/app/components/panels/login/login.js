@@ -12,21 +12,28 @@
 
   function loginCtrl($scope, UserService, $timeout, PanelService){
 
+    var openBoard = function(){
+      PanelService.open({
+        component: 'board',
+        scope: $scope
+      });
+    }
 
     this.getUser = function(){
       UserService.user()
-      .then(function(resp){
+      .then(function(user){
+        this.user = user;
         $timeout(function(){
-          PanelService.open({
-            component: 'board',
-            scope: $scope
-          });
+          openBoard();
         }, 1000);
       }, function(err){
         console.log(err);
       })
     }(); //immediatly invoked
 
+    this.continueNotLogged = function(){
+      openBoard();
+    }
 
   }
 })();
