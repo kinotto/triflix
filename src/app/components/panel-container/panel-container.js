@@ -64,15 +64,19 @@
 
 
           var leftPos = panels.length ? -width * (panels.length - 1) : 0;
-          $element.animate({
+          /*$element.animate({
             left: leftPos
           }, 1000, function(){
             $timeout(function(){
               panel.remove();
               $element.css('width', width * panels.length);
             }, 3000);
-          });
-
+          });*/
+          $element.css('left', leftPos);
+          $timeout(function(){
+            panel.remove();
+            $element.css('width', width * panels.length);
+          }, 3000);
 
         }
         var panel = $compile(elem)(newScope);
@@ -86,10 +90,10 @@
         $element.css('width', width * panels.length);
         $element.append(panel);
         var leftPos = -width * (panels.length - 1);
-        $element.animate({
+        /*$element.animate({
           left: leftPos
-        }, 1000);
-
+        }, 1000);*/
+        $element.css('left', leftPos);
 
       });
 

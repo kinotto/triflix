@@ -17,7 +17,14 @@
 
   function headerCtrl($compile, $scope, $element){
 
-    this.$postLink = function(){
+    this.handler = {
+      back: this.params.back.cb || function(){},
+      forward: this.params.forward.cb || function(){}
+    };
+    //this.avatar = this.params.avatar.url || 'assets/images/fb-profile.gif';
+    this.avatar = this.params.avatar && this.params.avatar.url;
+
+    /*this.$postLink = function(){
       var mainEl = angular.element(main);
       if(this.params.avatar){
         back = forward = avatar = '<div class="col-xs-4"></div>';
@@ -52,7 +59,7 @@
       $element.append($compile(mainEl)($scope));
 
 
-    }
+    }*/
 
   }
 

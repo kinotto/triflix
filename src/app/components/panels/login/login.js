@@ -8,32 +8,24 @@
     controllerAs: 'login'
   });
 
-  loginCtrl.$inject = ['UserService', '$timeout'];
+  loginCtrl.$inject = ['$scope', 'UserService', '$timeout', 'PanelService'];
 
-  function loginCtrl(UserService, $timeout){
-    /*PanelService.open({
-      component: 'login',
-      scope: $scope
-    });*/
+  function loginCtrl($scope, UserService, $timeout, PanelService){
 
-    this.login = function(){
-      /*Login.login()
-      .then(function(resp){
-        var p = resp;
-      }, function(err){
-        console.log(err);
-      })*/
-
-    }
 
     this.getUser = function(){
-      UserService.getUser()
+      UserService.user()
       .then(function(resp){
-        var p = resp;
+        $timeout(function(){
+          PanelService.open({
+            component: 'board',
+            scope: $scope
+          });
+        }, 1000);
       }, function(err){
         console.log(err);
       })
-    }
+    }(); //immediatly invoked
 
 
   }

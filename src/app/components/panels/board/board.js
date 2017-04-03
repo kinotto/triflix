@@ -8,10 +8,11 @@
     controllerAs: 'board'
   });
 
-  boardCtrl.$inject = ['PanelService', '$scope', '$timeout'];
+  boardCtrl.$inject = ['PanelService', '$scope', '$timeout', 'UserService'];
 
-  function boardCtrl(PanelService, $scope, $timeout){
+  function boardCtrl(PanelService, $scope, $timeout, UserService){
 
+    var user = UserService.getUser();
     var open = function(){
       PanelService.open({
         component: 'board',
@@ -22,14 +23,14 @@
     var close = function(){
       $scope.$parent.$close();
     }
-
+    //this.params = {};
     this.params = {
       back: {
         text: 'indietro',
         cb: close
       },
       avatar: {
-        url: 'assets/images/fb-profile.gif'
+        url: user.facebook.img || ''
       },
       forward: {
         text: 'avanti',

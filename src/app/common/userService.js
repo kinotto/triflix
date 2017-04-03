@@ -5,18 +5,22 @@
   UserService.$inject = ['$http', 'ApiPath'];
 
   function UserService($http, ApiPath){
-    this.login = function(){
-      return $http({
-        method: 'GET',
-        url: ApiPath.login.local
-      });
-    }
+
+    var user;
 
     this.getUser = function(){
+      return user;
+    }
+
+
+    this.user = function(){
       return $http({
         method: 'GET',
-        url: ApiPath.getUser.local,
+        url: ApiPath.getUser.remote,
+      }).then(function(resp){
+        user = resp.data || {};
+        return user;
       });
-    }
+    };
   }
 })();
