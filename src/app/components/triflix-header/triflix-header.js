@@ -18,8 +18,8 @@
   function headerCtrl($compile, $scope, $element){
 
     this.handler = {
-      back: this.params.back.cb || function(){},
-      forward: this.params.forward.cb || function(){}
+      back: this.params.back && this.params.back.cb || function(){},
+      forward: this.params.forward && this.params.forward.cb || function(){}
     };
     //this.avatar = this.params.avatar.url || 'assets/images/fb-profile.gif';
     this.avatar = this.params.avatar && this.params.avatar.url;

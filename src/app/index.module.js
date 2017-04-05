@@ -3,7 +3,6 @@
 
   angular.module('triflix', [
     'ui.router',
-    'ngScrollReveal',
     'ui.bootstrap'
   ])
 
@@ -21,6 +20,10 @@
       local: 'http://127.0.0.1:3002/user',
       remote: 'https://triflixbe.herokuapp.com/user'
     },
+    multiplayer: {
+      local: 'http://localhost:3002/',
+      remote: 'https://triflixbe.herokuapp.com'
+    }
   });
 
 
