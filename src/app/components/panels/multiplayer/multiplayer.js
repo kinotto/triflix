@@ -17,26 +17,37 @@
     //gestire timeout per connessione assente
 
     var self = this;
-    self.usersOnline = [];
     var socket = io.connect(ApiPath.multiplayer.local);
 
 
-    var scopeApply = function(clb){
-      $scope.$apply(function(){
-        clb && clb();
-      })
+    self.chooseOpponent = function(opponent){
+      if(self.users){
+        socket.emit('choose opponent', {
+          userIdFrom: user.facebook.id,
+          userIdTo: opponent.userId
+        })
+      }
     }
 
-    socket.emit('add to room', {userId: user.facebook.id});
+    socket.emit('add to room', {
+      userId: user.facebook.id,
+      name: user.facebook.name
+    });
 
 
 
     socket.on('add to room', function(data){
-      scopeApply(function(){
-        self.usersOnline = _.values(data.users);
+      $scope.$apply(function(){
+        self.users = data.users;
+        self.usersOnline = _.map(data.users, function(value, key){
+          return value;
+        })
       })
     });
 
+    socket.on('choose opponent', function(data){
+      alert('Richiesta sfida, vuoi giocare con '+data.userIdFrom);
+    })
 
     this.params = {
       back: {

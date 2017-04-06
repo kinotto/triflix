@@ -1,11 +1,15 @@
 <triflix-header params="multiplayer.params"></triflix-header>
 
-<div class="multiplayer">
-  <h1>Multiplayer</h1>
+<div class="row multiplayer">
+    <div class="col-sm-12">
+      <h1>Multiplayer</h1>
+    </div>
+  <div class="col-sm-12 multiplayer--box">
 
-  <div ng-repeat="user in multiplayer.usersOnline track by $index">
-    {{user}}
+    <div ng-repeat="user in multiplayer.usersOnline track by $index" ng-click="multiplayer.chooseOpponent(user)"
+      class="col-sm-4 col-sm-offset-4 multiplayer--box--el">
+      {{user.name}}
+    </div>
   </div>
-
 
 </div>
