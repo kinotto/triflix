@@ -2,9 +2,9 @@
   angular.module('triflix')
   .service('SocketService', SocketService);
 
-  SocketService.$inject = ['ApiPath', '$timeout', '$q'];
+  SocketService.$inject = ['ApiPath', '$timeout', '$q', 'TEAMS', '$rootScope'];
 
-  function SocketService(ApiPath, $timeout, $q){
+  function SocketService(ApiPath, $timeout, $q, TEAMS, $rootScope){
 
     var socket, opponent;
     this.initSocket = function(){
@@ -19,17 +19,31 @@
       opponent = challenger;
     }
 
+    this.getOpponentSocketFromValue = function(opponent, users){
+      var opponentSocketId = -1;
+      _.mapObject(users, function(user, socketId){
+        if(user.userId === opponent.userId)
+          opponentSocketId = socketId;
+      });
+      return opponentSocketId;
+    }
+
     this.getOpponent = function(){
       return opponent;
     }
 
-    this.makeMove = function(game){
+    this.makeMove = function(game, myLastMove){
       var deferred = $q.defer();
-      socket.emit('make move', game);
-      socket.on('make move', function(game){
-        deferred.resolve({data: game});
+      socket.emit('make move', {move: myLastMove, opponent: opponent});
+      socket.on('make move', function(opponentMove){
+        $rootScope.$apply(function(){
+          game.state[opponentMove] = game.team === TEAMS.X ? TEAMS.O : TEAMS.X;
+          deferred.resolve({data: game});
+        })
       })
       return deferred.promise;
     }
+
+    
   }
 })();

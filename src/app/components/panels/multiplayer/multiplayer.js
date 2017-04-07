@@ -23,7 +23,8 @@
 
     self.chooseOpponent = function(opponent){
       if(self.users){
-        socket.emit('choose opponent', opponent.userId);
+        var opponentSocketId = SocketService.getOpponentSocketFromValue(opponent, self.users);
+        socket.emit('choose opponent', opponentSocketId);
       }
     }
 
@@ -42,8 +43,8 @@
       })
     });
 
-    socket.on('challenge request', function(challenger){
-      var text = 'Challenge request from '+challenger.name;
+    socket.on('challenge request', function(opponent){
+      var text = 'Challenge request from '+ opponent.opponent.name;
       $uibModal.open({
         animation: true,
         component: 'confirm',
@@ -56,9 +57,9 @@
             return function(){
               socket.emit('challenge accepted', {
                 accepter: socket.id,
-                challenger: challenger.challengerSocket
+                challenger: opponent.opponentSocketId
               })
-              SocketService.chooseOpponent(challenger.challenger);
+              SocketService.chooseOpponent(opponent);
               $rootScope.$emit('triflix.game.start');
               $scope.$parent.$close();
             }

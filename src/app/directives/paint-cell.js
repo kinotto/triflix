@@ -1,6 +1,7 @@
 ;(function(){
   angular.module('triflix')
-  .directive('paintCell', ['Game', '$compile', function(Game, $compile){
+  .directive('paintCell', ['Game', '$compile', 'ANIMATIONS',
+    function(Game, $compile, ANIMATIONS){
     /*paint a single cell on the board*/
     var ddo = {
       scope: {
@@ -12,7 +13,8 @@
 
         scope.$watch('cell', function(newVal){
           if(!newVal) return;
-          scope.iconEffect = Game.ANIMATIONS[scope.cell] || 'bounceIn';
+          scope.iconEffect = ANIMATIONS[scope.cell] || 'bounceIn';
+          elem.removeClass('board__cell--x board__cell--o');
           elem.addClass('board__cell--selected board__cell--'+scope.cell.toLowerCase());
           elem.append($compile(icon)(scope));
 

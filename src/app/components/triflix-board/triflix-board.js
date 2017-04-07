@@ -10,9 +10,9 @@
   });
 
   triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game',
-  '$rootScope', '$uibModal'];
+  '$rootScope', '$uibModal', 'TEAMS'];
 
-  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal){
+  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal, TEAMS){
     var game, previous, self = this;
 
     this.$onInit = function(){
@@ -31,9 +31,9 @@
       if(Game.lockBoard){
         return;
       }
-      if(game.state[flatCoordinate] === Game.TEAMS.EMPTY){
+      if(game.state[flatCoordinate] === TEAMS.EMPTY){
         game.state[flatCoordinate] = game.team;
-        Game.opponentMove(game)
+        Game.opponentMove(game, flatCoordinate)
         .then(function(resp){
           _.extend(game, resp.data);
           if(game.winner.team){

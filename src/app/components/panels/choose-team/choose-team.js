@@ -10,13 +10,13 @@
     controllerAs: 'chooseTeam'
   })
 
-  ChooseTeamModalCtrl.$inject = ['Game'];
+  ChooseTeamModalCtrl.$inject = ['Game', 'TEAMS'];
 
-  function ChooseTeamModalCtrl(Game){
+  function ChooseTeamModalCtrl(Game, TEAMS){
     var self = this;
     //self.images = Game.IMAGES;
 
-    self.teams = Game.TEAMS;
+    self.teams = TEAMS;
     self.choose = function(team){
       Game.chooseTeam(team);
       self.modalInstance.close(team);
