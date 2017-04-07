@@ -2,9 +2,9 @@
   angular.module('triflix')
   .service('Game', Game);
 
-  Game.$inject = ['$http', 'TABLE_NR', '$timeout', 'ApiPath', '$q'];
+  Game.$inject = ['$http', 'TABLE_NR', '$timeout', 'ApiPath', '$q', 'SocketService'];
 
-  function Game($http, TABLE_NR, $timeout, ApiPath, $q){
+  function Game($http, TABLE_NR, $timeout, ApiPath, $q, SocketService){
 
     var ticTacToeWrapper = new TicTacToeWrapper(); //wrapper for tictactoeAI.js
     var game = [];
@@ -36,7 +36,7 @@
     }
 
 
-    this.AImove = function(game){
+    var AImove = function(game){
       var deferred = $q.defer();
       $timeout(function(){
         try{
@@ -48,9 +48,21 @@
         }
       })
       return deferred.promise;
+    }
+
+    var multiplayerMove = function(game){
+      return SocketService.makeMove(game);
+    }
+    this.opponentMove = function(game){
+      if(SocketService.getOpponent()){
+        return multiplayerMove(game);
+      } else{
+        return AImove(game);
+      }
 
     }
 
+    /*unused*/
     this.aiMoveRemote = function(){
       return $http({
         url: ApiPath.game.remote,

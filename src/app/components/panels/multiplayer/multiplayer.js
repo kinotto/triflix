@@ -8,9 +8,10 @@
     controllerAs: 'multiplayer'
   });
 
-  multiplayerCtrl.$inject = ['$scope', 'ApiPath', 'UserService', '$uibModal', 'PanelService', 'SocketService'];
+  multiplayerCtrl.$inject = ['$scope', 'ApiPath', 'UserService', '$uibModal', 'PanelService'
+  , 'SocketService', '$rootScope'];
 
-  function multiplayerCtrl($scope, ApiPath, UserService, $uibModal, PanelService, SocketService){
+  function multiplayerCtrl($scope, ApiPath, UserService, $uibModal, PanelService, SocketService, $rootScope){
 
     var user = UserService.getUser();
     if(!user) return; //display you have to login to use this feature
@@ -22,10 +23,7 @@
 
     self.chooseOpponent = function(opponent){
       if(self.users){
-        socket.emit('choose opponent', {
-          userIdFrom: user.facebook.id,
-          userIdTo: opponent.userId
-        })
+        socket.emit('choose opponent', opponent.userId);
       }
     }
 
@@ -56,7 +54,11 @@
           }],
           okCb: [function(){
             return function(){
-              SocketService.chooseOpponent(challenger);
+              socket.emit('challenge accepted', {
+                accepter: socket.id,
+                challenger: challenger.challengerSocket
+              })
+              SocketService.chooseOpponent(challenger.challenger);
               $rootScope.$emit('triflix.game.start');
               $scope.$parent.$close();
             }

@@ -33,7 +33,7 @@
       }
       if(game.state[flatCoordinate] === Game.TEAMS.EMPTY){
         game.state[flatCoordinate] = game.team;
-        Game.AImove(game)
+        Game.opponentMove(game)
         .then(function(resp){
           _.extend(game, resp.data);
           if(game.winner.team){
