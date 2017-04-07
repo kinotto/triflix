@@ -1,0 +1,20 @@
+.triflix-modal{
+  background-color: $col4;
+  padding: 30px;
+  border-radius: 22px;
+  font-family: arial;
+  &--header{
+    &--title{
+      font-size: 40px;
+      font-family: 'Pattaya', sans-serif;
+      text-align: center;
+    }
+  }
+
+  &--body{
+    h2{
+      font-size: 25px;
+    }
+    text-align: center;
+  }
+}
