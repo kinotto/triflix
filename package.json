@@ -7,8 +7,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "start": "gulp serve:dist",
-    "postinstall": "bower cache clean && bower install"
+    "start": "node server",
+    "postinstall": "bower cache clean && npm cache clean"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
