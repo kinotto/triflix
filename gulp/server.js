@@ -39,7 +39,10 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     server: server,
     browser: browser,
-    port: process.env.PORT | 3005
+    port: process.env.PORT | 3005,
+    ui: {
+      port: process.env.PORT | 3006
+    }
   });
 }
 
