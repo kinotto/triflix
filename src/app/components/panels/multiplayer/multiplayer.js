@@ -9,18 +9,24 @@
   });
 
   multiplayerCtrl.$inject = ['$scope', 'ApiPath', 'UserService', '$uibModal', 'PanelService'
-  , 'SocketService', '$rootScope'];
+  , 'SocketService', '$rootScope', 'PanelService'];
 
   function multiplayerCtrl($scope, ApiPath, UserService, $uibModal, PanelService,
-    SocketService, $rootScope){
+    SocketService, $rootScope, PanelService){
 
     var user = UserService.getUser();
     if(!user) return; //display you have to login to use this feature
     //gestire timeout per connessione assente
 
     var self = this;
+    SocketService.initSocket();
 
-
+    var openBoard = function(){
+      PanelService.open({
+        component: 'board',
+        scope: $scope
+      });
+    }
 
     self.chooseOpponent = function(opponent){
       if(self.users){
@@ -62,7 +68,7 @@
               })
               SocketService.chooseOpponent(opponent);
               $rootScope.$emit('triflix.game.start');
-              $scope.$parent.$close();
+              openBoard();
             }
           }]
         }
@@ -72,8 +78,7 @@
     SocketService.on('challenge accepted', function(opponent){
       SocketService.chooseOpponent(opponent);
       $rootScope.$emit('triflix.game.start');
-      $scope.$parent.$close();
-
+      openBoard();
     })
 
     this.params = {

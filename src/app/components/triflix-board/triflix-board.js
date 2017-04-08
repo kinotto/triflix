@@ -10,15 +10,23 @@
   });
 
   triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game',
-  '$rootScope', '$uibModal', 'TEAMS'];
+  '$rootScope', '$uibModal', 'TEAMS', 'SocketService'];
 
-  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal, TEAMS){
+  function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal,
+    TEAMS, SocketService){
     var game, previous, self = this;
 
     this.$onInit = function(){
       game = Game.getStatus()[this.index];
       this.game = game;
       previous = angular.copy(game);
+      if(SocketService.getOpponent()){
+        SocketService.on('make move', function(opponentMove){
+          $scope.$apply(function(){
+            game.state[opponentMove] = game.team === TEAMS.X ? TEAMS.O : TEAMS.X;
+          })
+        });
+      }
     }
     this.$doCheck = function(){
       if(!_.isEqual(game.state, previous.state)){

@@ -7,15 +7,13 @@
   function SocketService(ApiPath, $timeout, $q, TEAMS, $rootScope){
 
     var socket, opponent;
-    var initSocket = function(){
+    this.initSocket = function(){
       if(!window.io)
         return console.log('socket.io not loaded');
       if(!socket){
         socket = io.connect(ApiPath.multiplayer.local);
       }
-      return socket;
     }
-    initSocket();
 
     this.emit = function(evt, data){
       socket.emit(evt, data);
@@ -46,12 +44,13 @@
     this.makeMove = function(game, myLastMove){
       var deferred = $q.defer();
       socket.emit('make move', {move: myLastMove, opponent: opponent});
-      socket.on('make move', function(opponentMove){
+      deferred.resolve({data: game});
+      /*socket.on('make move', function(opponentMove){
         $rootScope.$apply(function(){
           game.state[opponentMove] = game.team === TEAMS.X ? TEAMS.O : TEAMS.X;
           deferred.resolve({data: game});
         })
-      })
+      })*/
       return deferred.promise;
     }
 

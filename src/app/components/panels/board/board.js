@@ -31,10 +31,6 @@
       },
       avatar: {
         url: user ?  (user.facebook.img || '') : ''
-      },
-      forward: {
-        text: 'Forward',
-        cb: open
       }
     }
   }

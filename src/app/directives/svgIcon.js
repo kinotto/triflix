@@ -3,11 +3,11 @@
   .directive('svgIcon', svgIconDirective)
   .service('svgIconService', svgIconService);
 
-  svgIconDirective.$inject = ['svgIconService'];
+  svgIconDirective.$inject = ['svgIconService', 'ANIMATIONS'];
   svgIconService.$inject = [];
 
 
-  function svgIconDirective(svgIconService){
+  function svgIconDirective(svgIconService, ANIMATIONS){
     var ddo = {
       link: function(scope, elem, attrs){
         attrs.$observe('svgIcon', function(icon){
@@ -15,7 +15,8 @@
           if(svg){
             svg = angular.element(svg);
             svg.css('width', attrs.width ? attrs.width + 'px' : '64px');
-            svg.attr('class','animated bounceIn');
+            var animation = ANIMATIONS[icon.charAt(0)];
+            svg.attr('class','animated '+animation);
             elem.replaceWith(svg);
           }
         })

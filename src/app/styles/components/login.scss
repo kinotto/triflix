@@ -1,0 +1,28 @@
+.login{
+  margin-top: 10px;
+  &--button{
+    font-size: 18px;
+    color: $col2;
+    font-family: arial;
+    border-radius: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: all .2s;
+    cursor: pointer;
+    &--local{
+      padding: 20px;
+      border: 2px solid $col2;
+    }
+    &--facebook{
+      padding: 20px;
+      border: 2px solid $col3;
+    }
+    &--realtime{
+      padding: 20px;
+      border: 2px solid $col5;
+    }
+  }
+  &--button:hover{
+    transform:scale(1.02);
+  }
+}

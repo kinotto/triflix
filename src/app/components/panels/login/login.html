@@ -1,22 +1,35 @@
-<div class="col-sm-12">
-  <div class="header">
-    <h1>TicTacToe</h1>
-    <p>Cras ultricies ligula sed magna dictum porta.</p>
+<div class="login">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center">
+      <div ng-repeat="team in login.teams" style="display: inline">
+        <span svg-icon="{{team}}-icon"  width="64"></span>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-4 col-sm-offset-4">
-    <a class="btn btn-block btn-social btn-facebook"
-    ng-href="https://triflixbe.herokuapp.com/auth/facebook">
-      <span class="fa fa-facebook"></span>
-      Sign in with Facebook
-    </a>
+  <div class="row" style="margin-top: 30px" ng-click="login.continueNotLogged()">
+    <div class="col-xs-8 col-xs-offset-2  col-sm-4 col-sm-offset-4 text-center
+      login--button login--button--local">
+      Local game
+    </div>
   </div>
-  <div class="col-sm-offset-4 col-sm-4" ng-click="login.continueNotLogged()">
-    <a class="pull-right" style="font-size:13px" href="" >
-      continue without login
-    </a>
+  <div class="row login--button">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center login--button
+    login--button--facebook" ng-click="login.loginWithFacebook()">
+      Multiplayer game with
+      <a class=" btn btn-social-icon btn-facebook" style="height: 32px">
+        <span class="fa fa-facebook"></span>
+      </a>
+    </div>
+  </div>
+  <div class="row login--button">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center login--button
+      login--button--realtime">
+      realtime game
+    </div>
+  </div>
+
   </div>
 </div>
-
 <!--
 http://localhost:3002/auth/facebook
 https://triflixbe.herokuapp.com/auth/facebook

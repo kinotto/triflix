@@ -8,13 +8,15 @@
     controllerAs: 'login'
   });
 
-  loginCtrl.$inject = ['$scope', 'UserService', '$timeout', 'PanelService'];
+  loginCtrl.$inject = ['$scope', 'UserService', '$timeout', 'PanelService', 'TEAMS',
+  'ANIMATIONS'];
 
-  function loginCtrl($scope, UserService, $timeout, PanelService){
-
+  function loginCtrl($scope, UserService, $timeout, PanelService, TEAMS, ANIMATIONS){
+    this.teams = TEAMS;
+    this.animations = ANIMATIONS;
     var openBoard = function(){
       PanelService.open({
-        component: 'board',
+        component: 'multiplayer',
         scope: $scope
       });
     }
@@ -33,6 +35,10 @@
 
     this.continueNotLogged = function(){
       openBoard();
+    }
+
+    this.loginWithFacebook = function(){
+      window.location.href = 'https://triflixbe.herokuapp.com/auth/facebook';
     }
 
   }
