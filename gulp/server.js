@@ -40,9 +40,7 @@ function browserSyncInit(baseDir, browser) {
     server: server,
     browser: browser,
     port: process.env.PORT | 3005,
-    ui: {
-      port: process.env.PORT | 3006
-    }
+    ui: false
   });
 }
 
