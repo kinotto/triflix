@@ -19,7 +19,7 @@
     //gestire timeout per connessione assente
 
     var self = this;
- 
+
 
 
     self.chooseOpponent = function(opponent){
@@ -57,7 +57,7 @@
           okCb: [function(){
             return function(){
               SocketService.emit('challenge accepted', {
-                accepter: SocketService.socketId,
+                accepter: SocketService.getSocketId(),
                 challenger: opponent.opponentSocketId
               })
               SocketService.chooseOpponent(opponent);
@@ -67,6 +67,13 @@
           }]
         }
       });
+    });
+
+    SocketService.on('challenge accepted', function(opponent){
+      SocketService.chooseOpponent(opponent);
+      $rootScope.$emit('triflix.game.start');
+      $scope.$parent.$close();
+
     })
 
     this.params = {

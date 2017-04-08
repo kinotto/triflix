@@ -23,7 +23,9 @@
     this.on = function(evt, clb){
       socket.on(evt, clb);
     }
-    this.socketId = socket.id;
+    this.getSocketId = function(){
+        return socket.id;
+    }
     this.chooseOpponent = function(challenger){
       opponent = challenger;
     }
