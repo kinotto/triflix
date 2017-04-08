@@ -12,9 +12,11 @@
         return console.log('socket.io not loaded');
       if(!socket){
         socket = io.connect(ApiPath.multiplayer.remote);
+        this.on('disconnect', function(){
+          socket = null;
+        })
       }
     }
-
     this.emit = function(evt, data){
       socket.emit(evt, data);
     }
