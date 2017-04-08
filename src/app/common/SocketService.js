@@ -7,7 +7,7 @@
   function SocketService(ApiPath, $timeout, $q, TEAMS, $rootScope){
 
     var socket, opponent;
-    this.initSocket = function(){
+    var initSocket = function(){
       if(!window.io)
         return console.log('socket.io not loaded');
       if(!socket){
@@ -15,6 +15,15 @@
       }
       return socket;
     }
+    initSocket();
+
+    this.emit = function(evt, data){
+      socket.emit(evt, data);
+    }
+    this.on = function(evt, clb){
+      socket.on(evt, clb);
+    }
+    this.socketId = socket.id;
     this.chooseOpponent = function(challenger){
       opponent = challenger;
     }
@@ -44,6 +53,6 @@
       return deferred.promise;
     }
 
-    
+
   }
 })();
