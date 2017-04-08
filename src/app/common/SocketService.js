@@ -11,10 +11,10 @@
       if(!window.io)
         return console.log('socket.io not loaded');
       if(!socket){
-        socket = io.connect(ApiPath.multiplayer.local);
+        socket = io.connect(ApiPath.multiplayer.remote);
       }
     }
-
+    //ciaoss
     this.emit = function(evt, data){
       socket.emit(evt, data);
     }
