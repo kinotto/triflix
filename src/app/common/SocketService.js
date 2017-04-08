@@ -14,7 +14,7 @@
         socket = io.connect(ApiPath.multiplayer.remote);
       }
     }
-
+    //ciao
     this.emit = function(evt, data){
       socket.emit(evt, data);
     }
