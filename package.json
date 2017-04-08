@@ -1,10 +1,14 @@
 {
   "name": "triflix",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "^1.8.0",
+    "express": "^4.15.2"
+  },
   "scripts": {
     "test": "gulp test",
-    "start": "gulp serve:dist"
+    "start": "gulp serve:dist",
+    "postinstall": "bower cache clean && bower install"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
