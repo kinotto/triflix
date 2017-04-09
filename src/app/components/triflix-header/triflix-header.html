@@ -1,12 +1,15 @@
 <div class="col-sm-12 triflix-header">
-  <div class="col-xs-4" ng-click="header.handler.back()" ng-show="header.params.back">
+  <div class="col-xs-4 triflix-header--button" ng-click="header.handler.back()"
+    ng-show="header.params.back">
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
     <span>Back</span>
   </div>
   <div class="col-xs-4 text-center">
-    <img ng-show="header.avatar" ng-src="{{header.avatar}}" width="32" height="24" class="img-circle" alt="no img">
+    <img ng-show="header.avatar" ng-src="{{header.avatar}}" width="32" height="24"
+      class="img-circle" alt="no img">
   </div>
-  <div class="col-xs-4" ng-click="header.handler.forward()" ng-show="header.params.forward">
+  <div class="col-xs-4 triflix-header--button" ng-click="header.handler.forward()"
+    ng-show="header.params.forward">
     <div class="pull-right">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
       <span>Forward</span>

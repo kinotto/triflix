@@ -5,7 +5,7 @@
   config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
   function config($stateProvider, $urlRouterProvider, $httpProvider){
     $httpProvider.defaults.withCredentials = true;
-    //$httpProvider.interceptors.push('httpInterceptor');
+    $httpProvider.interceptors.push('httpInterceptor');
 
     $stateProvider
       .state('home', {

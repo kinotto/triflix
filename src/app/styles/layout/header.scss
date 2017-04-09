@@ -17,4 +17,7 @@
 .triflix-header{
   color: $col2;
   font-family: arial, sans-serif;
+  &--button{
+    cursor: pointer;
+  }
 }
