@@ -22,26 +22,33 @@
       });
     }
 
-    this.getUser = function(){
+    var getUser = function(panel){
       UserService.user()
-      .then(function(user){
-        this.user = user;
-        $timeout(function(){
-          openPanel('multiplayer');
-        }, 500);
+      .then(function(resp){
+        this.user = resp.data;
+        if(panel)
+          $timeout(function(){
+            openPanel('multiplayer');
+          }, 100);
       }, function(err){
         console.log(err);
       })
-    }(); //immediatly invoked
-
+    }
+    getUser();
     this.continueNotLogged = function(){
       openPanel('board');
     }
 
     this.loginWithFacebook = function(){
-      goTo(ApiPath.login.remote);
+      if(window.localStorage.getItem('x-auth'))
+        getUser('multiplayer');
+      else
+        facebookAuth();
     }
 
+    var facebookAuth = function(){
+      goTo(ApiPath.login.remote);
+    }
 
     /*workaround per fare settare al browser l'header referer fondamentale al login
     a node per fare il redirect corretto. con window.location non viene settato l'header*/

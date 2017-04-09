@@ -18,8 +18,11 @@
         method: 'GET',
         url: ApiPath.getUser.remote,
       }).then(function(resp){
-        user = resp.data || {};
-        return user;
+        if(!resp.data.error)
+          user = resp.data;
+        return resp;
+      }, function(err){
+        return err;
       });
     };
   }
