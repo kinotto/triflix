@@ -39,7 +39,7 @@
     }
 
     this.loginWithFacebook = function(){
-      goTo(ApiPath.login.remote);
+      //goTo(ApiPath.login.remote);
     }
 
 
