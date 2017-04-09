@@ -15,7 +15,7 @@
     SocketService, $rootScope, PanelService){
 
     var user = UserService.getUser();
-    if(!user) $scope.$parent.$close(); //display you have to login to use this feature
+    if(!user) return $scope.$parent.$close(); //display you have to login to use this feature
     //gestire timeout per connessione assente
 
     var self = this;
