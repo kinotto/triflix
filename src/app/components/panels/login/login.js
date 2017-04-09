@@ -28,7 +28,7 @@
         this.user = user;
         $timeout(function(){
           openPanel('multiplayer');
-        }, 1000);
+        }, 500);
       }, function(err){
         console.log(err);
       })
@@ -39,7 +39,7 @@
     }
 
     this.loginWithFacebook = function(){
-      window.location.href = ApiPath.login.remote;
+      window.location.href = ApiPath.login.local;
     }
 
   }

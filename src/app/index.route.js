@@ -5,6 +5,7 @@
   config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
   function config($stateProvider, $urlRouterProvider, $httpProvider){
     $httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push('httpInterceptor');
     //$httpProvider.defaults.headers.get.Cookies = $cookies;
     $stateProvider
       .state('home', {
