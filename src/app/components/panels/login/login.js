@@ -28,7 +28,7 @@
         this.user = resp.data;
         if(panel)
           $timeout(function(){
-            openPanel('multiplayer');
+            openPanel(panel);
           }, 100);
       }, function(err){
         console.log(err);
