@@ -39,8 +39,23 @@
     }
 
     this.loginWithFacebook = function(){
-      window.location.href = ApiPath.login.local;
+      goTo(ApiPath.login.local);
     }
 
+
+    /*workaround per fare settare al browser l'header referer fondamentale al login
+    a node per fare il redirect corretto. con window.location non viene settato l'header*/
+    function goTo(url){
+      var a = document.createElement("a");
+      if(!a.click) //for IE
+      {
+           window.location = url;
+           return;
+      }
+      a.setAttribute("href", url);
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+    }
   }
 })();
