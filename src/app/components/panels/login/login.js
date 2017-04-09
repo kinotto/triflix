@@ -39,7 +39,7 @@
     }
 
     this.loginWithFacebook = function(){
-      goTo(ApiPath.login.local);
+      goTo(ApiPath.login.remote);
     }
 
 
@@ -56,6 +56,7 @@
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
+      console.log('click created');
     }
   }
 })();

@@ -7,7 +7,6 @@
     function httpInterceptor($location){
       return {
         request: function(config){
-          config.headers['referer'] = $location.protocol() + '://' + $location.host();
           return config;
         },
         response: function(response){
