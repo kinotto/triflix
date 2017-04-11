@@ -48,11 +48,12 @@
         self.usersOnline = _.map(data.users, function(value, key){
           return value;
         })
+        self.usersOnline = [self.usersOnline[0], self.usersOnline[0], self.usersOnline[0], self.usersOnline[0]];
       })
     });
 
     SocketService.on('challenge request', function(opponent){
-      var text = 'Challenge request from '+ opponent.opponent.name;
+      var text = 'Challenge request from '+ opponent.opponent.data.name;
       $uibModal.open({
         animation: true,
         component: 'confirm',
