@@ -13,20 +13,25 @@
     text-align: center;
   }
   &--box{
+    border: 1px solid black;
+    padding: 15px;
+    background-color: $col8;
+    transition: all .2s;
+    -webkit-animation-duration: .2s; /* Safari 4.0 - 8.0 */
 
-    &--el{
-      padding: 5px;
-      text-align: center;
-      border: 1px solid $col2;
-      border-radius: 1px;
-      text-shadow: 1px;
-      transition: all .2s;
-      color: $col2;
-      background-color: $col3;
-    }
-    &--el:hover{
-      cursor: pointer;
-      transform: scale(1.01);
-    }
+
+  }
+  &--img{
+    border: 1px solid black;
+  }
+
+  &--name{
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &--box:hover{
+    cursor: pointer;
+    //transform: scale(1.005);
   }
 }

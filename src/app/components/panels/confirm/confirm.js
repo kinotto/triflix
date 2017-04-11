@@ -19,5 +19,8 @@
       ctrl.modalInstance.dismiss('cancel');
       okCb();
     }
+    ctrl.resolve.cancelCb = function(){
+      ctrl.modalInstance.dismiss('cancel');
+    }
   }
 })();

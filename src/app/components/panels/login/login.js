@@ -34,7 +34,7 @@
         console.log(err);
       })
     }
-    getUser();
+    getUser('multiplayer');
     this.continueNotLogged = function(){
       openPanel('board');
     }
@@ -51,7 +51,7 @@
     }
 
     /*workaround per fare settare al browser l'header referer fondamentale al login
-    a node per fare il redirect corretto. con window.location non viene settato l'header*/
+    a node per fare il redirect corretto. con window.location non viene settato l'header referer*/
     function goTo(url){
       var a = document.createElement("a");
       if(!a.click) //for IE
@@ -63,7 +63,6 @@
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
-      console.log('click created');
     }
   }
 })();

@@ -38,7 +38,7 @@
 
     SocketService.emit('add to room', {
       userId: user.facebook.id,
-      name: user.facebook.name
+      data: user.facebook
     });
 
 

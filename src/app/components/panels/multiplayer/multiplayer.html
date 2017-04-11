@@ -1,15 +1,29 @@
 <triflix-header params="multiplayer.params"></triflix-header>
 
-<div class="row multiplayer">
-    <div class="col-sm-12">
-      <h1>Multiplayer</h1>
-    </div>
-  <div class="col-sm-12 multiplayer--box">
-
-    <div ng-repeat="user in multiplayer.usersOnline track by $index" ng-click="multiplayer.chooseOpponent(user)"
-      class="col-sm-4 col-sm-offset-4 multiplayer--box--el">
-      {{user.name}}
-    </div>
+<div class="container multiplayer">
+  <div class="row">
+      <div class="col-sm-12">
+        <h1>Multiplayer</h1>
+      </div>
   </div>
+  <div class="row multiplayer--box " ng-repeat="user in multiplayer.usersOnline
+  track by $index" ng-click="multiplayer.chooseOpponent(user)">
+      <div class="row">
 
+
+
+            <div class="col-sm-2 col-sm-offset-1">
+              <button class="col-sm-12 btn btn-success">Invite</button>
+            </div>
+            <div class="col-sm-6">
+              <div class="col-sm-12 text-center multiplayer--name">{{user.data.name}}</div>
+            </div>
+
+
+        <div class="col-sm-2">
+          <img ng-src="{{user.data.img}}" alt="no img"  style="width: 50%" class="multiplayer--img pull-right" />
+        </div>
+      </div>
+
+  </div>
 </div>
