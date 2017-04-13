@@ -9,12 +9,11 @@
   <div class="row">
     <div class="col-sm-6 multiplayer--box " ng-repeat="user in multiplayer.usersOnline
     track by $index" ng-click="multiplayer.chooseOpponent(user)">
-      <div  class="card">
+      <div class="card">
         <img ng-src="{{user.data.img}}" alt="no img" class="card__img" />
         <span class="multiplayer--name" class="card__name">{{user.data.name}}</span>
         <button class="card__cta">Invite</button>
       </div>
-
     </div>
   </div>
 </div>
