@@ -17,6 +17,8 @@
     var game, previous, self = this;
 
     this.$onInit = function(){
+      Game.lockBoard = true;
+      Game.reset();
       game = Game.getStatus()[this.index];
       this.game = game;
       previous = angular.copy(game);
@@ -56,7 +58,7 @@
               }
             })
             victoryModal.result.catch(function(dismissed){
-              Game.restart();
+              Game.reset();
               $rootScope.$emit('triflix.game.start');
             })
           }

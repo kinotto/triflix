@@ -63,7 +63,7 @@
         data: JSON.stringify(eval(game))
       });
     }
-    this.restart = function(){
+    this.reset = function(){
       game.forEach(function(g){
         g.state = ['','','','','','','','',''];
         g.winner = {};
