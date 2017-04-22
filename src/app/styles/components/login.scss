@@ -21,6 +21,10 @@
       padding: 20px;
       border: 2px solid $col5;
     }
+    &--settings{
+      padding: 20px;
+      border: 2px solid $col7;
+    }
   }
   &--button:hover{
     transform:scale(1.02);

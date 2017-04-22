@@ -14,6 +14,11 @@
     X: 'tada',
     O: 'bounceIn'
   })
+  .constant('LEVELS', {
+    IMPOSSIBLE: 'Impossible',
+    MEDIUM: 'Medium',
+    EASY: 'Easy'
+  })
   .constant('ApiPath', {
     game: {
       local: 'http://127.0.0.1:8080/jerseybackend/rest/game',
@@ -32,7 +37,6 @@
       remote: 'https://triflixbe.herokuapp.com'
     }
   })
-  .constant('TABLE_NR', 2);
 
 
 })();

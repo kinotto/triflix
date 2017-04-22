@@ -1,0 +1,39 @@
+.settings{
+  color: white;
+  font-size: 18px;
+  h1{
+    font-size: 40px;
+    font-family: 'Pattaya', sans-serif;
+    text-align: center;
+  }
+  &__bordered{
+    border-top: 1px solid grey;
+    margin-top: 15px;
+  }
+  &__head{
+    margin: 10px;
+    padding: 10px;
+  }
+
+
+  &__content{
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid $col7;
+    border-radius: 5px;
+
+    &__el{
+      display: inline-block;
+      animation: all .2s;
+      cursor: pointer;
+      padding: 10px;
+      border-right: 1px solid $col7;
+      &__selected{
+        background-color: $col9;
+      }
+    }
+    &__el:hover{
+      background-color: $col9;
+    }
+  }
+}

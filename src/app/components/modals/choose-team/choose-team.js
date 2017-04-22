@@ -5,7 +5,7 @@
       modalInstance: '<',
       resolve: '<'
     },
-    templateUrl: 'app/components/panels/choose-team/choose-team.html',
+    templateUrl: 'app/components/modals/choose-team/choose-team.html',
     controller: ChooseTeamModalCtrl,
     controllerAs: 'chooseTeam'
   })

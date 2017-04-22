@@ -2,41 +2,35 @@
   angular.module('triflix')
   .service('Game', Game);
 
-  Game.$inject = ['$http', 'TEAMS', 'TABLE_NR', '$timeout', 'ApiPath', '$q', 'SocketService'];
+  Game.$inject = ['$http', 'TEAMS', 'LEVELS', 'GameSettings', '$timeout', 'ApiPath', '$q',
+   'SocketService', '$rootScope'];
 
-  function Game($http, TEAMS, TABLE_NR, $timeout, ApiPath, $q, SocketService){
+  function Game($http, TEAMS, LEVELS, GameSettings, $timeout, ApiPath, $q, SocketService,
+    $rootScope){
 
     var ticTacToeWrapper = new TicTacToeWrapper(); //wrapper for tictactoeAI.js
-    var game = [];
 
-    function init(){
-      for(var i = 0; i < TABLE_NR; i++){
-        game[i] = {};
-        game[i].team = TEAMS.X; //default team
-        game[i].state = ['','','','','','','','',''];
-        game[i].winner = {};
-      }
-    }
-    init();
-
+    game = {};
+    game.team = GameSettings.getSettings().team;
+    game.state = ['','','','','','','','',''];
+    game.winner = {};
     this.lockBoard = true;
-
-    this.getStatus = function(){
-      return game;
-    }
 
 
     var AImove = function(game){
       var deferred = $q.defer();
       $timeout(function(){
         try{
+          if(!hasEmptySlots(game.state)){
+            return deferred.reject(new Error('draw'));
+          }
           var result = ticTacToeWrapper.makeMove(game);
           deferred.resolve(result);
         }
         catch(error){
           deferred.reject(error);
         }
-      })
+      }, 800);
       return deferred.promise;
     }
 
@@ -52,33 +46,28 @@
 
     }
 
-    /*unused*/
-    this.aiMoveRemote = function(){
-      return $http({
-        url: ApiPath.game.remote,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json' //request
-        },
-        data: JSON.stringify(eval(game))
-      });
-    }
     this.reset = function(){
-      game.forEach(function(g){
-        g.state = ['','','','','','','','',''];
-        g.winner = {};
-      })
-
-    }
-
-    this.chooseTeam = function(team){
-      game.forEach(function(g){
-        g.team = team;
-      })
+      game.state = ['','','','','','','','',''];
+      game.winner = {};
     }
 
     this.flatCoordinate = function(x, y){
       return x + (y * 3);
     }
+
+    this.getStatus = function(){
+      return game;
+    }
+
+    var hasEmptySlots = function(state){
+      var foundOne = _.find(state, function(cell){return cell === TEAMS.EMPTY});
+      return foundOne !== undefined ? true : false;
+    }
+
+
+    /* events */
+    $rootScope.$on('triflix.game.change.team', function(evt, data){
+      game.team = GameSettings.getSettings().team;
+    })
   }
 })();

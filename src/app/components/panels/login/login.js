@@ -35,6 +35,7 @@
       })
     }
     getUser('multiplayer');
+
     this.continueNotLogged = function(){
       openPanel('board');
     }
@@ -44,6 +45,10 @@
         getUser('multiplayer');
       else
         facebookAuth();
+    }
+
+    this.openSettings = function(){
+      openPanel('settings');
     }
 
     var facebookAuth = function(){

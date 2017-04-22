@@ -82,4 +82,15 @@ body {
   .board__cell--x & {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon fill='#{$col4}' fill-rule='nonzero' points='100 11.5399943 88.4595969 0 50.0001022 38.4599035 11.5404031 0 0 11.5399943 38.4596991 50.0001022 0 88.4595969 11.5406074 100 50.0001022 61.5403009 88.4595969 100 99.9997956 88.4595969 61.5403009 50.0001022'></polygon></svg>") center center  no-repeat;
   }
+
+  @media screen and (max-width: 500px){
+    .board__cell--o & {
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle stroke='#{$col5}' stroke-width='11' fill='transparent' cx='50' cy='50' r='30' /></svg>") center center  no-repeat;
+    }
+
+    .board__cell--x & {
+      background: url("data:image/svg+xml;utf8,<svg width=\"50px\" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon  fill='#{$col4}' fill-rule='nonzero' points='100 11.5399943 88.4595969 0 50.0001022 38.4599035 11.5404031 0 0 11.5399943 38.4596991 50.0001022 0 88.4595969 11.5406074 100 50.0001022 61.5403009 88.4595969 100 99.9997956 88.4595969 61.5403009 50.0001022'></polygon></svg>") center center  no-repeat;
+    }
+  }
+
 }

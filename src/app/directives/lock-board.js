@@ -8,7 +8,7 @@
       link: function(scope, elem, attrs){
         elem.on('click', fn);
         function fn(evt){
-          var modal = $uibModal.open({
+          /*var modal = $uibModal.open({
             animation: true,
             component: 'chooseTeamModal',
             backdrop: 'static',
@@ -21,7 +21,10 @@
           })
           .catch(function(res){
 
-          })
+          })*/
+          elem.off('click', fn);
+          Game.lockBoard = false; //unlock board
+          $rootScope.$emit('triflix.game.start');
         }
 
       }

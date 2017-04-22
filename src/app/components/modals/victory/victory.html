@@ -1,11 +1,15 @@
 <div class="triflix-modal">
   <div class="triflix-modal--header">
-      <h3 class="triflix-modal--title">We have a winner</h3>
+    <h3 ng-if="$ctrl.winner.team" class="triflix-modal--title">We have a winner</h3>
+    <h3 ng-if="!$ctrl.winner.team" class="triflix-modal--title">Draw :(</h3>
   </div>
-  <div class="triflix-modal--body">
-      Player
-      <span svg-icon="{{$ctrl.winnerTeam}}-icon" width="32"></span>
-      win the game
+  <div ng-if="$ctrl.winner.team" class="triflix-modal--body">
+    Player
+    <span svg-icon="{{$ctrl.winner.team}}-icon" width="32"></span>
+    win the game
+  </div>
+  <div ng-if="!$ctrl.winner.team" class="triflix-modal--body">
+    Play again!
   </div>
 </div>
 

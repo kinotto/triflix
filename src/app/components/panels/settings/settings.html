@@ -1,0 +1,39 @@
+<triflix-header params="settings.params"></triflix-header>
+
+<div class="container settings">
+  <div class="row">
+      <div class="col-sm-12">
+        <h1>Settings</h1>
+      </div>
+  </div>
+
+  <div class="row settings__bordered">
+    <div class="col-xs-2">
+      <div class="settings__head">Team</div>
+    </div>
+    <div class="col-xs-10">
+      <div class="settings__content pull-right">
+        <div class="settings__content__el" select-option="team" select-option-value="TEAM"
+          ng-repeat="TEAM in settings.teams" ng-if="TEAM !== ''"
+          ng-click="settings.applySetting('team', TEAM)">
+          <span svg-icon="{{TEAM}}-icon" width="64"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row settings__bordered">
+    <div class="col-xs-2">
+      <div class="settings__head">Level</div>
+    </div>
+    <div class="col-xs-10">
+      <div class="settings__content pull-right">
+        <div class="settings__content__el" select-option="level" select-option-value="LEVEL"
+          ng-repeat="LEVEL in settings.levels" ng-click="settings.applySetting('level', LEVEL)">
+          <span>{{LEVEL}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

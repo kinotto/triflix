@@ -5,7 +5,7 @@
       resolve: '<',
       modalInstance: '<'
     },
-    templateUrl: 'app/components/panels/confirm/confirm.html',
+    templateUrl: 'app/components/modals/confirm/confirm.html',
     controller: confirmCtrl,
     controllerAs: 'confirm'
   });

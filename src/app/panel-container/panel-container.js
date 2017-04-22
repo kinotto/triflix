@@ -76,7 +76,7 @@
           $timeout(function(){
             panel.remove();
             $element.css('width', width * panels.length);
-          }, 1000);
+          }, 500);
 
         }
         var panel = $compile(elem)(newScope);

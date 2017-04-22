@@ -1,7 +1,9 @@
 <div class="col-sm-12">
   <div class="header">
     <h1>TicTacToe</h1>
-    <p>Cras ultricies ligula sed magna dictum porta.</p>
+    <p ng-if="board.userMove">It's <b>your</b> turn</p>
+    <p ng-if="!board.userMove"><b>AI</b> turn</p>
+    <!--<p>Cras ultricies ligula sed magna dictum porta.</p>-->
   </div>
 </div>
 
