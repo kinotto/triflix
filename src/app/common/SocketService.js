@@ -11,7 +11,7 @@
       if(!window.io)
         return console.log('socket.io not loaded');
       if(!socket){
-        socket = io.connect(ApiPath.multiplayer.local);
+        socket = io.connect(ApiPath.multiplayer.remote);
         this.on('disconnect', function(){
           socket = null;
         })
