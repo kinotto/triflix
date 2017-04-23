@@ -3,15 +3,15 @@
   .service('Game', Game);
 
   Game.$inject = ['$http', 'TEAMS', 'LEVELS', 'GameSettings', '$timeout', 'ApiPath', '$q',
-   'SocketService', '$rootScope'];
+   'SocketService', '$rootScope', 'TicTacToeWrapper'];
 
   function Game($http, TEAMS, LEVELS, GameSettings, $timeout, ApiPath, $q, SocketService,
-    $rootScope){
+    $rootScope, TicTacToeWrapper){
 
-    var ticTacToeWrapper = new TicTacToeWrapper(); //wrapper for tictactoeAI.js
-
+    var ticTacToeWrapper;
     game = {};
     game.team = GameSettings.getSettings().team;
+    game.level = GameSettings.getSettings().level;
     game.state = ['','','','','','','','',''];
     game.winner = {};
     this.lockBoard = true;
@@ -49,6 +49,7 @@
     this.reset = function(){
       game.state = ['','','','','','','','',''];
       game.winner = {};
+      ticTacToeWrapper = new TicTacToeWrapper();
     }
 
     this.flatCoordinate = function(x, y){
@@ -66,8 +67,9 @@
 
 
     /* events */
-    $rootScope.$on('triflix.game.change.team', function(evt, data){
+    $rootScope.$on('triflix.game.change.settings', function(evt, data){
       game.team = GameSettings.getSettings().team;
+      game.level = GameSettings.getSettings().level;
     })
   }
 })();

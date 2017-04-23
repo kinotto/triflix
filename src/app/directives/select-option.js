@@ -8,7 +8,7 @@
         value: '=selectOptionValue'
       },
       link: function(scope, elem, attrs){
-        if(GameSettings.getSettings()[scope.option] === scope.value)
+        if(_.isEqual(GameSettings.getSettings()[scope.option], scope.value))
           elem.addClass('settings__content__el__selected');
 
         elem.on('click', function(){

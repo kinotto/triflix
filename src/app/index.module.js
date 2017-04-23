@@ -15,9 +15,18 @@
     O: 'bounceIn'
   })
   .constant('LEVELS', {
-    IMPOSSIBLE: 'Impossible',
-    MEDIUM: 'Medium',
-    EASY: 'Easy'
+    IMPOSSIBLE: {
+      label: 'Hard',
+      errors: 0
+    },
+    MEDIUM: {
+      label: 'Medium',
+      errors: 1
+    },
+    EASY: {
+      label: 'Easy',
+      errors: 2
+    }
   })
   .constant('ApiPath', {
     game: {

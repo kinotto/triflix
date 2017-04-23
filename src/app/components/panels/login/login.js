@@ -34,7 +34,7 @@
         console.log(err);
       })
     }
-    getUser('multiplayer');
+    //getUser('multiplayer');
 
     this.continueNotLogged = function(){
       openPanel('board');

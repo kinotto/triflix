@@ -3,7 +3,7 @@
 <div class="container settings">
   <div class="row">
       <div class="col-sm-12">
-        <h1>Settings</h1>
+        <h1>Settings <i class="fa fa-gamepad" aria-hidden="true"></i></h1>
       </div>
   </div>
 
@@ -28,12 +28,24 @@
     <div class="col-xs-10">
       <div class="settings__content pull-right">
         <div class="settings__content__el" select-option="level" select-option-value="LEVEL"
-          ng-repeat="LEVEL in settings.levels" ng-click="settings.applySetting('level', LEVEL)">
-          <span>{{LEVEL}}</span>
+          ng-repeat="(key, LEVEL) in settings.levels" ng-click="settings.applySetting('level', key)">
+          <span>{{LEVEL.label}}</span>
         </div>
       </div>
     </div>
   </div>
-
+  <div class="row settings__bordered">
+    <div class="col-xs-2">
+      <div class="settings__head">Sound</div>
+    </div>
+    <div class="col-xs-10">
+      <div class="settings__content pull-right">
+        <div class="settings__content__el" select-option="sound" select-option-value="SOUND"
+          ng-repeat="SOUND in ['on', 'off']" ng-click="settings.applySetting('sound', SOUND)">
+          <span>{{SOUND}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

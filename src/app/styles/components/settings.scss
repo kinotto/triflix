@@ -1,5 +1,6 @@
 .settings{
   color: white;
+  font-family: arial;
   font-size: 18px;
   h1{
     font-size: 40px;
@@ -19,21 +20,27 @@
   &__content{
     display: inline-block;
     margin: 10px;
-    border: 1px solid $col7;
-    border-radius: 5px;
+    border: 1px solid $col1;
+    border-radius: 2px;
 
     &__el{
+      border-radius: 2px;
       display: inline-block;
       animation: all .2s;
       cursor: pointer;
       padding: 10px;
-      border-right: 1px solid $col7;
+      //border-right: 1px solid $col7;
+      box-shadow: 12px 15px 20px 0px rgba(0,0,0,0.1);
       &__selected{
-        background-color: $col9;
+        background-color: $col1;
+        box-shadow: 2px 4px 8px 0px rgba(0,0,0,1);
+        //border: 1px solid $col7;
       }
     }
     &__el:hover{
-      background-color: $col9;
+      background-color: $col1;
+      box-shadow: 2px 4px 8px 0px rgba(0,0,0,1);
+      //border: 1px solid $col7;
     }
   }
 }
