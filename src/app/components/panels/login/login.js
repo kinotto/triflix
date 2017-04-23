@@ -36,7 +36,7 @@
         console.log(err);
       })
     }
-
+    getUser('');
 
     this.continueNotLogged = function(){
       openPanel('board');
