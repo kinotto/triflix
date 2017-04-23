@@ -8,20 +8,23 @@
       var aiPlayer = new TicTacToe.TicTacToeAIPlayer();
       var aiTeam = tictactoe.oppositePlayer(game.team);
       aiPlayer.initialize(aiTeam, tictactoe);
-      if(!_.isEqual(game.level, LEVELS.IMPOSSIBLE) && this.errors < game.level.errors){
-        var randomCell = getRandomCell(game);
-        tictactoe.board[randomCell] = aiTeam;
-        this.errors++;
-      }
-      else{
-        var move = aiPlayer.makeMove();
-        if(move != null){
-          tictactoe.makeMove(aiTeam, move);
-        } else {
-          throw new Error('invalid move');
-        }
-      }
       var winner = tictactoe.winner();
+      if(!winner){
+        if(!_.isEqual(game.level, LEVELS.IMPOSSIBLE) && this.errors < game.level.errors){
+          var randomCell = getRandomCell(game);
+          tictactoe.board[randomCell] = aiTeam;
+          this.errors++;
+        }
+        else{
+          var move = aiPlayer.makeMove();
+          if(move != null){
+            tictactoe.makeMove(aiTeam, move);
+          } else {
+            throw new Error('invalid move');
+          }
+        }
+        winner = tictactoe.winner();
+      }
       return {
         data: {
           team: game.team,
