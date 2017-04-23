@@ -34,15 +34,15 @@
       remote: 'https://triflixbackend.herokuapp.com/rest/game'
     },
     login: {
-      local: 'http://localhost:3002/auth/facebook',
+      local: 'http://localhost:3007/auth/facebook',
       remote: 'https://triflixbe.herokuapp.com/auth/facebook'
     },
     getUser: {
-      local: 'http://127.0.0.1:3002/user',
+      local: 'http://127.0.0.1:3007/user',
       remote: 'https://triflixbe.herokuapp.com/user'
     },
     multiplayer: {
-      local: 'http://localhost:3002',
+      local: 'http://localhost:3007',
       remote: 'https://triflixbe.herokuapp.com'
     }
   })

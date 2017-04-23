@@ -11,7 +11,7 @@
       if(!window.io)
         return console.log('socket.io not loaded');
       if(!socket){
-        socket = io.connect(ApiPath.multiplayer.remote);
+        socket = io.connect(ApiPath.multiplayer.local);
         this.on('disconnect', function(){
           socket = null;
         })
@@ -43,8 +43,11 @@
       return opponent;
     }
 
-    this.makeMove = function(game, myLastMove){
+    this.makeMove = function(game, myLastMove, hasEmptySlots){
       var deferred = $q.defer();
+      if(!hasEmptySlots){
+        deferred.reject(new Error('draw'));
+      }
       socket.emit('make move', {move: myLastMove, opponent: opponent});
       deferred.resolve({data: game});
       /*socket.on('make move', function(opponentMove){

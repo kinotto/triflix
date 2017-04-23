@@ -22,7 +22,6 @@
       self.winnerImg = 'assets/images/o.png';
     */
     self.winner = self.game.winner;
-
     self.$postLink = function(){
 
     }

@@ -2,7 +2,8 @@
   <div class="header">
     <h1>TicTacToe</h1>
     <p ng-if="board.userMove">It's <b>your</b> turn</p>
-    <p ng-if="!board.userMove"><b>AI</b> turn</p>
+    <p ng-if="!board.userMove && !board.opponentName"><b>AI</b> turn</p>
+    <p ng-if="!board.userMove && board.opponentName"><b>{{board.opponentName}}</b> turn</p>
     <!--<p>Cras ultricies ligula sed magna dictum porta.</p>-->
   </div>
 </div>

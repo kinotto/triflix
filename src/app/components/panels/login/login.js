@@ -13,6 +13,8 @@
 
   function loginCtrl($scope, UserService, $timeout, PanelService, TEAMS, ANIMATIONS,
   ApiPath){
+    checkIncognitoMode();
+    var isIncognitoMode = false;
     this.teams = TEAMS;
     this.animations = ANIMATIONS;
     var openPanel= function(panel){
@@ -34,7 +36,7 @@
         console.log(err);
       })
     }
-    //getUser('multiplayer');
+
 
     this.continueNotLogged = function(){
       openPanel('board');
@@ -68,6 +70,25 @@
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
+    }
+
+    /*utile perchè in modalità incognito non funziona il localstorage*/
+    function checkIncognitoMode(){
+      var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+      if (!fs) {
+        console.log('check failed');
+        isIncognitoMode = false;
+      } else{
+        fs(window.TEMPORARY,
+           100,
+           function(){
+             isIncognitoMode = false; //not in incognito
+           },
+           function(){
+             isIncognitoMode = true; //incognito mode
+             getUser('multiplayer');
+           });
+      }
     }
   }
 })();

@@ -48,7 +48,7 @@
         self.usersOnline = _.map(data.users, function(value, key){
           return value;
         })
-        self.usersOnline = [self.usersOnline[0], self.usersOnline[0], self.usersOnline[0], self.usersOnline[0]];
+        //self.usersOnline = [self.usersOnline[0], self.usersOnline[0], self.usersOnline[0], self.usersOnline[0]];
       })
     });
 

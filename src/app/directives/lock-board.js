@@ -1,12 +1,15 @@
 ;(function(){
   angular.module('triflix')
-  .directive('lockBoard', ['$uibModal', 'Game', '$rootScope', function($uibModal, Game, $rootScope){
+  .directive('lockBoard', ['$uibModal', 'Game', '$rootScope', 'SocketService',
+    function($uibModal, Game, $rootScope, SocketService){
 
     /*Lock the board until you choose a team through the ChooseTeam modal component*/
 
     var ddo = {
       link: function(scope, elem, attrs){
-        elem.on('click', fn);
+        if(!SocketService.getOpponent())
+          elem.on('click', fn);
+          
         function fn(evt){
           /*var modal = $uibModal.open({
             animation: true,

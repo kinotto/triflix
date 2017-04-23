@@ -8,7 +8,7 @@
   function Game($http, TEAMS, LEVELS, GameSettings, $timeout, ApiPath, $q, SocketService,
     $rootScope, TicTacToeWrapper){
 
-    var ticTacToeWrapper;
+    var ticTacToeWrapper, self = this;
     game = {};
     game.team = GameSettings.getSettings().team;
     game.level = GameSettings.getSettings().level;
@@ -21,7 +21,7 @@
       var deferred = $q.defer();
       $timeout(function(){
         try{
-          if(!hasEmptySlots(game.state)){
+          if(!self.hasEmptySlots(game.state)){
             return deferred.reject(new Error('draw'));
           }
           var result = ticTacToeWrapper.makeMove(game);
@@ -35,7 +35,9 @@
     }
 
     var multiplayerMove = function(game, lastMove){
-      return SocketService.makeMove(game, lastMove);
+      var hasemptyslots = self.hasEmptySlots(game.state);
+      self.winner(game);
+      return SocketService.makeMove(game, lastMove, hasemptyslots);
     }
     this.opponentMove = function(game, lastMove){
       if(SocketService.getOpponent()){
@@ -60,11 +62,18 @@
       return game;
     }
 
-    var hasEmptySlots = function(state){
+    this.hasEmptySlots = function(state){
       var foundOne = _.find(state, function(cell){return cell === TEAMS.EMPTY});
       return foundOne !== undefined ? true : false;
     }
-
+    this.winner = function(game){
+      game.winner = ticTacToeWrapper.winner(game);
+      if(game.winner){
+        game.winner.team = game.winner.cell;
+        delete game.winner.cell;
+      }
+      return game.winner;
+    }
 
     /* events */
     $rootScope.$on('triflix.game.change.settings', function(evt, data){

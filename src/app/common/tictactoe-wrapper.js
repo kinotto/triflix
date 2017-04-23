@@ -51,6 +51,13 @@
     return function(){
       this.errors = 0;
       this.makeMove = makeMove;
+      this.winner = function(game){
+        var tictactoe = new TicTacToe.TicTacToeBoard(game.state);
+        var aiPlayer = new TicTacToe.TicTacToeAIPlayer();
+        var aiTeam = tictactoe.oppositePlayer(game.team);
+        aiPlayer.initialize(aiTeam, tictactoe);
+        return tictactoe.winner();
+      }
     }
 
 

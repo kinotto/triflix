@@ -23,11 +23,23 @@
       game = Game.getStatus();
       this.game = game;
       if(SocketService.getOpponent()){
+        self.opponentName = SocketService.getOpponent().opponent.data.name.split(" ")[0];
+        Game.lockBoard = false;
         SocketService.on('make move', function(opponentMove){
           $scope.$apply(function(){
             game.state[opponentMove] = game.team === TEAMS.X ? TEAMS.O : TEAMS.X;
+            self.userMove = true;
+            if(Game.winner(game)){
+              openModal('victoryModal', function(dismissed){
+                Game.reset();
+                $rootScope.$emit('triflix.game.start');
+              });
+            }
           })
         });
+        SocketService.on('game aborted', function(){
+          $scope.$parent.$parent.$close();
+        })
       }
     }
 
@@ -42,7 +54,10 @@
         Game.opponentMove(game, flatCoordinate)
         .then(function(resp){
           _.extend(game, resp.data);
-          self.userMove = true;
+          if(!SocketService.getOpponent()){
+            self.userMove = true;
+          }
+
           if(game.winner.team){
             $rootScope.$emit('triflix.game.victory');
             openModal('victoryModal', function(dismissed){
@@ -80,6 +95,11 @@
         }
       })
       modal.result.catch(callback)
+    }
+
+    var hasEmptySlots = function(state){
+      var foundOne = _.find(state, function(cell){return cell === TEAMS.EMPTY});
+      return foundOne !== undefined ? true : false;
     }
   }
 })();
