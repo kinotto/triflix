@@ -29,7 +29,9 @@
     this.chooseOpponent = function(challenger){
       opponent = challenger;
     }
-
+    this.removeOpponent = function(){
+      opponent = null;
+    }
     this.getOpponentSocketFromValue = function(opponent, users){
       var opponentSocketId = -1;
       _.mapObject(users, function(user, socketId){
