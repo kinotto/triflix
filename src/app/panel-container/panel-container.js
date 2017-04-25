@@ -37,12 +37,13 @@
 
       var panels = [];
       $rootScope.$on('triflix.addpanel', function(evt, params){
+        var newScope = $rootScope.$new();
         var elem = angular.element('<div></div>');
         elem.css('float', 'left');
         elem.css('width', width);
         elem.css('height', height);
 
-        if(params.controller ){
+        if(params.controller){
           var ctrl = angular.element('<div></div>');
           ctrl.attr('ng-controller', params.controller);
           var template = $templateCache.get(params.templateUrl);
@@ -50,28 +51,25 @@
           elem.append(ctrl);
         }
         else if(params.component){
-          var component = '<' + params.component + '></' + params.component + '>';
+          var component = '<' + params.component;
+          if(params.resolve && typeof(params.resolve) === "object"){
+            for(var key in params.resolve){
+              newScope['resolved' + key] = params.resolve[key]();
+              component += ' ' + key + '="resolved' + key + '"';
+            }
+          }
+          component += '></' + params.component + '>';
           elem.append(component);
         }
 
-        var newScope = $rootScope.$new();
+
         newScope.prototype = params.scope;
         newScope.$close = function(){
           var index = panels.indexOf(panel);
-
           panels.splice(index, 1);
           panel.scope().$destroy();
-
-
           var leftPos = panels.length ? -width * (panels.length - 1) : 0;
-          /*$element.animate({
-            left: leftPos
-          }, 1000, function(){
-            $timeout(function(){
-              panel.remove();
-              $element.css('width', width * panels.length);
-            }, 3000);
-          });*/
+
           $element.css('left', leftPos);
           $timeout(function(){
             panel.remove();
@@ -90,9 +88,7 @@
         $element.css('width', width * panels.length);
         $element.append(panel);
         var leftPos = -width * (panels.length - 1);
-        /*$element.animate({
-          left: leftPos
-        }, 1000);*/
+
         $element.css('left', leftPos);
 
       });

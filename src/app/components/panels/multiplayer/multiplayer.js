@@ -84,6 +84,17 @@
       openBoard();
     })
 
+    this.openProfile = function(userSelected){
+      PanelService.open({
+        component: 'profile',
+        scope: $scope,
+        resolve: {
+          user: function(){
+            return userSelected;
+          }
+        }
+      });
+    }
     this.params = {
       back: {
         text: 'Back',

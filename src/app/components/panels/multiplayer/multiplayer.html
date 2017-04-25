@@ -10,11 +10,12 @@
     <div class="col-sm-6 multiplayer--box " ng-repeat="user in multiplayer.usersOnline
     track by $index">
       <div class="card" ng-init="inviteSent = false">
-        <img ng-src="{{user.data.img}}" alt="no img" class="card__img" />
+        <img ng-click="multiplayer.openProfile(user)"ng-src="{{user.data.img}}" alt="no img" class="card__img" />
         <span class="multiplayer--name" class="card__name">{{user.data.name}}</span>
         <button ng-show="!inviteSent" ng-click="multiplayer.chooseOpponent(user); inviteSent = true"
           class="card__cta" ng-disabled="user.data.id === multiplayer.user.facebook.id">Invite</button>
         <button ng-show="inviteSent" ng-disabled="inviteSent" class="card__cta">Invite sent..</button>
+      </div>
     </div>
   </div>
 </div>
