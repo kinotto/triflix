@@ -1,0 +1,36 @@
+.profile{
+  color: white;
+  font-size: 18px;
+  font-family: arial;
+  &__title {
+    font-size: 40px;
+    font-family: 'Pattaya', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+    &__gamestats{
+      margin-top: 30px;
+    }
+  }
+  &__img{
+    box-shadow: 2px 4px 8px 0px rgba(0,0,0,1);
+    max-width: 100%;
+  }
+  &__info{
+    display: inline-block;
+
+    &__name{
+      font-size: 30px;
+    }
+    &__member{
+      font-weight: bold;
+    }
+    &__createdAt{
+
+    }
+    &__badge{
+      margin-top: 10px;
+      box-shadow: 2px 4px 8px 0px rgba(0,0,0,1);
+    }
+  }
+
+}

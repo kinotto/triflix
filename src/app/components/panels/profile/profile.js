@@ -9,11 +9,17 @@
     controllerAs: 'profile'
   });
 
-  profileCtrl.$inject = ['$scope'];
+  profileCtrl.$inject = ['$scope', 'ScoreService'];
 
-  function profileCtrl($scope){
+  function profileCtrl($scope, ScoreService){
     var self = this;
-
+    ScoreService.get(self.user.data.facebook.id)
+    .then(function(resp){
+      self.scores = resp.data;
+    })
+    .catch(function(err){
+      console.log(err);
+    })
 
     this.params = {
       back: {

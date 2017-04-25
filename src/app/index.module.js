@@ -44,6 +44,10 @@
     multiplayer: {
       local: 'http://localhost:3007',
       remote: 'https://triflixbe.herokuapp.com'
+    },
+    score: {
+      local: 'http://localhost:3007/score',
+      remote: 'https://triflixbe.herokuapp.com/score'
     }
   })
 

@@ -39,7 +39,7 @@
 
     SocketService.emit('add to room', {
       userId: user.facebook.id,
-      data: user.facebook
+      data: user
     });
 
 
@@ -54,7 +54,7 @@
     });
 
     SocketService.on('challenge request', function(opponent){
-      var text = 'Challenge request from '+ opponent.opponent.data.name;
+      var text = 'Challenge request from '+ opponent.opponent.data.facebook.name;
       $uibModal.open({
         animation: true,
         component: 'confirm',

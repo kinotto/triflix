@@ -1,5 +1,55 @@
 <triflix-header params="profile.params"></triflix-header>
 
 <div class="container profile">
-  ciaoooo
+  <div class="row">
+      <div class="col-sm-12">
+        <h1 class="profile__title">Profile info
+          <i class="fa fa-user-circle" aria-hidden="true"></i></h1>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <img class="profile__img" ng-src="{{profile.user.data.facebook.img}}" alt="no img">
+    </div>
+    <div class="col-xs-6">
+      <div class="profile__info pull-right">
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="profile__info__name">{{profile.user.data.facebook.name}}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="profile__info__member">Member since</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="profile__info__createdAt">{{profile.user.data.createdAt | date: 'yyyy-MM-dd'}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="profile__info__badgetitle">Badges</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <img class="profile__info__badge" ng-src="https://cdn0.iconfinder.com/data/icons/customicondesign-office7-shadow-png/256/Metal-gold-blue.png" width="64" alt="">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="row">
+      <div class="col-sm-12">
+        <h1 class="profile__title profile__title__gamestats">Game stats</h1>
+      </div>
+  </div>-->
+
+
 </div>

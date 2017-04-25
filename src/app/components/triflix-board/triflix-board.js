@@ -10,10 +10,10 @@
   });
 
   triflixBoardCtrl.$inject = ['$element', '$compile', '$scope', 'Game',
-  '$rootScope', '$uibModal', 'TEAMS', 'SocketService'];
+  '$rootScope', '$uibModal', 'TEAMS', 'SocketService', 'ScoreService'];
 
   function triflixBoardCtrl($element, $compile, $scope, Game, $rootScope, $uibModal,
-    TEAMS, SocketService){
+    TEAMS, SocketService, ScoreService){
     var game, self = this;
 
     this.$onInit = function(){
@@ -23,13 +23,20 @@
       game = Game.getStatus();
       this.game = game;
       if(SocketService.getOpponent()){
-        self.opponentName = SocketService.getOpponent().opponent.data.name.split(" ")[0];
+        self.opponentName = SocketService.getOpponent().opponent.data.facebook.name.split(" ")[0];
         Game.lockBoard = false;
         SocketService.on('make move', function(opponentMove){
           $scope.$apply(function(){
             game.state[opponentMove] = game.team === TEAMS.X ? TEAMS.O : TEAMS.X;
             self.userMove = true;
             if(Game.winner(game)){
+              SocketService.emit('winner or draw', {
+                description: "test",
+                player1: user.facebook.id,
+                player2: SocketService.getOpponent().opponent.data.facebook.id,
+                winner: game.winner.team,
+                state: game.state
+              })
               openModal('victoryModal', function(dismissed){
                 Game.reset();
                 $rootScope.$emit('triflix.game.start');
