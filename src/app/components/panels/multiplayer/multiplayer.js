@@ -9,10 +9,10 @@
   });
 
   multiplayerCtrl.$inject = ['$scope', 'ApiPath', 'UserService', '$uibModal', 'PanelService'
-  , 'SocketService', '$rootScope', 'PanelService'];
+  , 'SocketService', '$rootScope', 'PanelService', 'GameSettings'];
 
   function multiplayerCtrl($scope, ApiPath, UserService, $uibModal, PanelService,
-    SocketService, $rootScope, PanelService){
+    SocketService, $rootScope, PanelService, GameSettings){
 
     var self = this;
     self.user = UserService.getUser();
@@ -33,7 +33,7 @@
     self.chooseOpponent = function(opponent){
       if(self.users){
         var opponentSocketId = SocketService.getOpponentSocketFromValue(opponent, self.users);
-        SocketService.emit('choose opponent', opponentSocketId);
+        SocketService.emit('choose opponent', {team: GameSettings.getSettings().team, opponentSocketId: opponentSocketId});
       }
     }
 
@@ -41,7 +41,6 @@
       userId: user.facebook.id,
       data: user
     });
-
 
     SocketService.on('add to room', function(data){
       $scope.$apply(function(){
@@ -53,8 +52,8 @@
       })
     });
 
-    SocketService.on('challenge request', function(opponent){
-      var text = 'Challenge request from '+ opponent.opponent.data.facebook.name;
+    SocketService.on('challenge request', function(data){
+      var text = 'Challenge request from '+ data.opponent.data.facebook.name;
       $uibModal.open({
         animation: true,
         component: 'confirm',
@@ -67,9 +66,9 @@
             return function(){
               SocketService.emit('challenge accepted', {
                 accepter: SocketService.getSocketId(),
-                challenger: opponent.opponentSocketId
+                challenger: data.opponentSocketId
               })
-              SocketService.chooseOpponent(opponent);
+              SocketService.chooseOpponent(data);
               $rootScope.$emit('triflix.game.start');
               openBoard();
             }

@@ -33,4 +33,32 @@
     }
   }
 
+  .stats{
+    &__container{
+      display:flex;
+      align-items: center; /* Vertical center alignment */
+      justify-content: center;
+      width: 100%;
+      height: 100px;
+      box-shadow: 2px 4px 8px 0px rgba(0,0,0,1);
+      border-radius: 5px;
+    }
+    &__opponenentImg{
+      width: 64px;
+      height: 64px;
+      border-radius: 5px;
+    }
+    &__text{
+    }
+    &__forwardImg{
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      transition: all 2s;
+      animation-timing-function: ease-in-out;
+    }
+    &__forwardImg:hover{
+      transform: scale(1.2);
+    }
+  }
 }

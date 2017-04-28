@@ -8,9 +8,9 @@
     controllerAs: 'board'
   });
 
-  boardCtrl.$inject = ['PanelService', '$scope', '$timeout', 'UserService'];
+  boardCtrl.$inject = ['PanelService', '$scope', '$timeout', 'UserService', '$rootScope'];
 
-  function boardCtrl(PanelService, $scope, $timeout, UserService){
+  function boardCtrl(PanelService, $scope, $timeout, UserService, $rootScope){
 
     var user = UserService.getUser();
     var open = function(){
@@ -21,6 +21,10 @@
 
     }
     var close = function(){
+      //ripristino le impostaizoni utente che potrebbero essere cambiate se si sta giocando
+      //una partita in multiplayer, la team viene comandata da chi invia la richiesta di sfida
+      //bisogna ripristinarla al default
+      $rootScope.$emit('triflix.game.change.settings');
       $scope.$parent.$close();
     }
 

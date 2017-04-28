@@ -18,11 +18,13 @@
 
     this.$onInit = function(){
       self.userMove = true;
+
       Game.lockBoard = true;
       Game.reset();
       game = Game.getStatus();
       this.game = game;
       if(SocketService.getOpponent()){
+        this.game.team = SocketService.getOpponent().opponentTeam === TEAMS.X ? TEAMS.O : TEAMS.X;
         self.opponentName = SocketService.getOpponent().opponent.data.facebook.name.split(" ")[0];
         Game.lockBoard = false;
         SocketService.on('make move', function(opponentMove){
@@ -34,7 +36,9 @@
                 description: "test",
                 player1: user.facebook.id,
                 player2: SocketService.getOpponent().opponent.data.facebook.id,
-                winner: game.winner.team,
+                teamPlayer1: game.team,
+                teamPlayer2: SocketService.getOpponent().opponentTeam,
+                winner: game.winner.team === game.team ? user.facebook.id : SocketService.getOpponent().opponent.data.facebook.id,
                 state: game.state
               })
               openModal('victoryModal', function(dismissed){
@@ -65,7 +69,7 @@
             self.userMove = true;
           }
 
-          if(game.winner.team){
+          if(game.winner && game.winner.team){
             $rootScope.$emit('triflix.game.victory');
             openModal('victoryModal', function(dismissed){
               Game.reset();
@@ -104,9 +108,9 @@
       modal.result.catch(callback)
     }
 
-    var hasEmptySlots = function(state){
+    /*var hasEmptySlots = function(state){
       var foundOne = _.find(state, function(cell){return cell === TEAMS.EMPTY});
       return foundOne !== undefined ? true : false;
-    }
+    }*/
   }
 })();
