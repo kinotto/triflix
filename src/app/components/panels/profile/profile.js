@@ -9,15 +9,16 @@
     controllerAs: 'profile'
   });
 
-  profileCtrl.$inject = ['$scope', 'ScoreService', 'UserService'];
+  profileCtrl.$inject = ['$scope', 'ScoreService', 'UserService', 'PanelService'];
 
-  function profileCtrl($scope, ScoreService, UserService){
+  function profileCtrl($scope, ScoreService, UserService, PanelService){
     var self = this;
     self.user = self.user.data || self.user;
     ScoreService.get(self.user.facebook.id)
     .then(function(resp){
       self.scores = resp.data;
-      return UserService.extUser(self.scores[0].player1);
+      extractOpponents(self.scores);
+      //return UserService.extUser(self.scores[0].player1);
       //risolvi con $q tutti gli utenti con cui ha fatto partite
       //oppure recupera questa informazione direttamente con una select su node
     })
@@ -36,5 +37,26 @@
         }
       }
     };
+
+    this.openGameStats = function(score){
+      PanelService.open({
+        component: 'game-stats',
+        scope: $scope,
+        resolve: {
+          score: function(){
+            return score;
+          }
+        }
+      });
+    }
+
+    function extractOpponents(scores){
+      for(var i = 0; i < scores.length; i++){
+        if(scores[i].player1.facebook && scores[i].player1.facebook.id !== self.user.facebook.id)
+          scores[i].opponent = scores[i].player1;
+        if(scores[i].player2.facebook && scores[i].player2.facebook.id !== self.user.facebook.id)
+          scores[i].opponent = scores[i].player2;
+      }
+    }
   }
 })();

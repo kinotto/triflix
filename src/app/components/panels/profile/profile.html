@@ -50,15 +50,15 @@
         <h1 class="profile__title profile__title__gamestats">Game stats</h1>
       </div>
     </div>
-    <div class="row" ng-repeat="score in profile.scores">
+    <div class="row" ng-repeat="score in profile.scores" ng-if="score.opponent">
       <div class="stats__container">
         <div class="col-xs-4">
-          <img class="stats__opponenentImg" ng-src="{{profile.user.facebook.img}}" alt="no img">
+          <img class="stats__opponenentImg" ng-src="{{score.opponent.facebook.img}}" alt="no img">
         </div>
         <div class="col-xs-4">
-          <span class="stats__text col-xs-12 text-center">vs pippo</span>
+          <span class="stats__text col-xs-12 text-center">vs {{score.opponent.facebook.name}}</span>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4" ng-click="profile.openGameStats(score)">
           <img class="stats__forwardImg pull-right" ng-src="assets/images/forward.png" alt="no img">
         </div>
       </div>
