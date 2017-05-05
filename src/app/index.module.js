@@ -48,6 +48,10 @@
     score: {
       local: 'http://localhost:3007/score',
       remote: 'https://triflixbe.herokuapp.com/score'
+    },
+    getFBfriendsWithApp: {
+      local: 'http://localhost:3007/user/me/friends',
+      remote: 'https://triflixbe.herokuapp.com/user/me/friends'
     }
   })
 

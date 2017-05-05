@@ -20,6 +20,13 @@
       })
     }
 
+    this.getFBfriendsWithApp = function(params){
+      return $http({
+        method: 'GET',
+        url: ApiPath.getFBfriendsWithApp.local,
+        params: params
+      })
+    }
     this.user = function(id){
       return $http({
         method: 'GET',

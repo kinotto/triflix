@@ -30,6 +30,21 @@
       });
     }
 
+    self.fbFriendsWithApp = [];
+    //funzione di paging, che scarica man mano tutti gli amici con già il gioco
+    //installato.
+    var getFBfriendsWithApp  = function(params){
+      UserService.getFBfriendsWithApp(params)
+      .then(function(resp){
+        [].push.apply(self.fbFriendsWithApp, resp.data.data);
+        if(resp.data.paging.next)
+          getFBfriendsWithApp({nextPage: resp.data.paging.next});
+      }, function(err){
+        console.log(err);
+      })
+    }
+    getFBfriendsWithApp();
+
     self.chooseOpponent = function(opponent){
       if(self.users){
         var opponentSocketId = SocketService.getOpponentSocketFromValue(opponent, self.users);
