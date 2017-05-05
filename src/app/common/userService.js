@@ -27,6 +27,13 @@
         params: params
       })
     }
+    this.invite = function(params){
+      return $http({
+        method: 'GET',
+        url: ApiPath.inviteFriends.local,
+        params: params
+      })
+    }
     this.user = function(id){
       return $http({
         method: 'GET',

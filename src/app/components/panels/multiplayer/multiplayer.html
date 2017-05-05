@@ -11,10 +11,19 @@
     track by $index">
       <div class="card" ng-init="inviteSent = false">
         <img ng-click="multiplayer.openProfile(user)"ng-src="{{user.data.facebook.img}}" alt="no img" class="card__img" />
-        <span class="multiplayer--name" class="card__name">{{user.data.facebook.name}}</span>
-        <button ng-show="!inviteSent" ng-click="multiplayer.chooseOpponent(user); inviteSent = true"
+        <span class="card__name">{{user.data.facebook.name}}</span>
+        <span class="circle animated infinite pulse"
+          ng-class="{'offline' : !user.online, 'online': user.online}" style="width: 15px; height: 15px;"></span>
+        <img ng-if="user.fbFriend" class="card__fbFriends" ng-src="assets/images/fbfriends.jpg" alt="no img"/>
+        <button ng-show="!inviteSent && user.online" ng-click="multiplayer.chooseOpponent(user); inviteSent = true"
+          class="card__cta" ng-disabled="user.data.facebook.id === multiplayer.user.facebook.id">Invite</button>
+        <button ng-show="!inviteSent && !user.online" ng-click="multiplayer.inviteFriend(user); inviteSent = true"
           class="card__cta" ng-disabled="user.data.facebook.id === multiplayer.user.facebook.id">Invite</button>
         <button ng-show="inviteSent" ng-disabled="inviteSent" class="card__cta">Invite sent..</button>
+        <!--<div class="overlay">
+          <span class="circle animated infinite pulse"
+            ng-class="{'offline' : !user.online, 'online': user.online}"></span>
+        </div>-->
       </div>
     </div>
   </div>

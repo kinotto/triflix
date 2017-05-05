@@ -52,6 +52,10 @@
     getFBfriendsWithApp: {
       local: 'http://localhost:3007/user/me/friends',
       remote: 'https://triflixbe.herokuapp.com/user/me/friends'
+    },
+    inviteFriends: {
+      local: 'http://localhost:3007/user/invite-friend',
+      remote: 'https://triflixbe.herokuapp.com/user/invite-friend'
     }
   })
 
