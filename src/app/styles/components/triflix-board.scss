@@ -17,6 +17,7 @@ body {
 
 // component board
 .board {
+  position: relative; //messa solo per l'overlay
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -61,6 +62,22 @@ body {
     &:last-child {
       box-shadow: none;
     }
+  }
+
+  &__overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: rgba(255,255,255,.1);
+    box-shadow: 1px 1px 0px #999,
+                2px 2px 0px #999,
+                3px 3px 0px #999,
+                4px 4px 0px #999,
+                5px 5px 0px #999,
+                6px 6px 0px #999;
   }
 }
 

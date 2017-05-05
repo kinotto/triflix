@@ -1,5 +1,33 @@
 <triflix-header params="$ctrl.params"></triflix-header>
 
-<div class="row">
-  <div class="col-xs-12"></div>
+<div class="container stats">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="stats__title">Game stats</h1>
+    </div>
+  </div>
+
+  <table class="table table-inverse">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Player</th>
+        <th>Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{$ctrl.score.player1.facebook.name}}</td>
+        <td>{{$ctrl.score.teamPlayer1}}</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>{{$ctrl.score.player2.facebook.name}}</td>
+        <td>{{$ctrl.score.teamPlayer2}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <static-board state="$ctrl.score.state" locked="true"></static-board>
 </div>
