@@ -15,7 +15,8 @@
     var self = this;
     self.messages = [];
 
-    self.addMessage = function(){
+    self.addMessage = function(e){
+      var chatContainer = $element.find('.chat__container').first();
       self.user = UserService.getUser();
       self.messages.push({
         img: self.user.facebook.img,
@@ -23,6 +24,12 @@
         text: self.message
       })
       self.message = "";
+      e.preventDefault(); //impedisco all'invio di andare a capo
+      //aspetto la fine di questo digest così si aggiorna il div
+      //con la nuova altezza e posso scrollare fino in basso
+      $timeout(function(){
+        chatContainer[0].scrollTop = chatContainer[0].scrollHeight; //scrollo giù
+      },0, false);
     }
 
     self.$postLink = function(){

@@ -1,19 +1,22 @@
 <div class="chat">
-  <img ng-show="!$ctrl.chatOpened" class="chat__logo" ng-src="assets/images/chat.png"
-    alt="no img">
+  <div style="position: relative; width: 100%; height: 100%">
+    <img ng-show="!$ctrl.chatOpened" class="chat__logo" ng-src="assets/images/chat.png"
+      alt="no img">
 
-  <div class="chat__container" ng-if="$ctrl.chatOpened">
-
-    <div ng-repeat="message in $ctrl.messages">
-      <img class="chat__userImg" ng-src="{{message.img}}" width="32" alt="no img">
-      <div>
-        <span class="chat__username">{{message.name}}</span>
-        <span class="chat__message">{{message.text}}</span>
+    <div class="chat__container" ng-if="$ctrl.chatOpened">
+      <div ng-repeat="message in $ctrl.messages" style="overflow: auto; margin-bottom: 10px">
+        <div class="chat__col2">
+          <img class="chat__userImg" ng-src="{{message.img}}" width="32" alt="no img">
+        </div>
+        <div class="chat__col10">
+          <span class="chat__username">{{message.name}}</span>
+          <span class="chat__message">{{message.text}}</span>
+        </div>
       </div>
     </div>
 
-    <div class="chat__textarea">
-      <textarea ng-keydown="$event.keyCode === 13 && $ctrl.addMessage()"
+    <div class="chat__textarea" ng-if="$ctrl.chatOpened">
+      <textarea ng-keydown="$event.keyCode === 13 && $ctrl.message && $ctrl.addMessage($event)"
         ng-model="$ctrl.message"></textarea>
     </div>
   </div>
