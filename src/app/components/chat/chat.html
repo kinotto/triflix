@@ -1,0 +1,21 @@
+<div class="chat">
+  <img ng-show="!$ctrl.chatOpened" class="chat__logo" ng-src="assets/images/chat.png"
+    alt="no img">
+
+  <div class="chat__container" ng-if="$ctrl.chatOpened">
+
+    <div ng-repeat="message in $ctrl.messages">
+      <img class="chat__userImg" ng-src="{{message.img}}" width="32" alt="no img">
+      <div>
+        <span class="chat__username">{{message.name}}</span>
+        <span class="chat__message">{{message.text}}</span>
+      </div>
+    </div>
+
+    <div class="chat__textarea">
+      <textarea ng-keydown="$event.keyCode === 13 && $ctrl.addMessage()"
+        ng-model="$ctrl.message"></textarea>
+    </div>
+  </div>
+
+</div>

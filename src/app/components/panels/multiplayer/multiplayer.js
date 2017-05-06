@@ -67,7 +67,7 @@
             return value;
           })
           //mergio gli array e sovrascrivo eventuali proprietà online = false
-          self.usersOnline = _.extend(self.fbFriends, self.usersOnline);
+          self.usersOnline = mergeByProperty(self.fbFriends, self.usersOnline, 'id');
           //self.usersOnline = [self.usersOnline[0], self.usersOnline[0], self.usersOnline[0], self.usersOnline[0]];
         })
       });
@@ -124,6 +124,16 @@
       })
     }
 
+    function mergeByProperty(arr1, arr2, prop){
+      _.each(arr2, function(arr2Obj){
+        var found = _.find(arr1, function(arr1Obj){
+          if(arr1Obj.data.facebook[prop] === arr2Obj.data.facebook[prop])
+            return arr1Obj;
+        });
+        found ? _.extend(found, arr2Obj) : arr1.push(arr2Obj);
+      })
+      return arr1;
+    }
     this.params = {
       back: {
         text: 'Back',
