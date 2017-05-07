@@ -24,7 +24,10 @@
       game = Game.getStatus();
       this.game = game;
       if(SocketService.getOpponent()){
-        this.game.team = SocketService.getOpponent().opponentTeam === TEAMS.X ? TEAMS.O : TEAMS.X;
+        //se c'è il campo opponentTeam significa che l'avversario ha scelto la squadra
+        if(SocketService.getOpponent().opponentTeam)
+          this.game.team = SocketService.getOpponent().opponentTeam === TEAMS.X ? TEAMS.O : TEAMS.X;
+
         self.opponentName = SocketService.getOpponent().opponent.data.facebook.name.split(" ")[0];
         Game.lockBoard = false;
         SocketService.on('make move', function(opponentMove){

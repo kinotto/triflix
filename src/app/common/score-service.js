@@ -5,7 +5,7 @@
   ScoreService.$inject = ['ApiPath', '$http'];
 
   function ScoreService(ApiPath, $http){
-    var api = ApiPath.score.local;
+    var api = ApiPath.score.remote;
     this.save = function(body){
       return $http({
         url: api,

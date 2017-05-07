@@ -15,7 +15,7 @@
     this.extUser = function(id){
       return $http({
         method: 'GET',
-        url: ApiPath.getUser.local,
+        url: ApiPath.getUser.remote,
         params: id
       })
     }
@@ -23,14 +23,14 @@
     this.getFBfriendsWithApp = function(params){
       return $http({
         method: 'GET',
-        url: ApiPath.getFBfriendsWithApp.local,
+        url: ApiPath.getFBfriendsWithApp.remote,
         params: params
       })
     }
     this.invite = function(params){
       return $http({
         method: 'GET',
-        url: ApiPath.inviteFriends.local,
+        url: ApiPath.inviteFriends.remote,
         params: params
       })
     }
