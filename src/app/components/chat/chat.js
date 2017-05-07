@@ -8,15 +8,18 @@
     controller: chatCtrl
   });
 
-  chatCtrl.$inject = ['$element', '$scope', '$timeout', '$document', 'UserService',
-  'SocketService'];
+  chatCtrl.$inject = ['$element', '$scope', '$rootScope', '$timeout', '$document',
+  'UserService', 'SocketService', 'MobileService'];
 
 
-  function chatCtrl($element, $scope, $timeout, $document, UserService, SocketService){
+  function chatCtrl($element, $scope, $rootScope, $timeout, $document, UserService,
+    SocketService, MobileService){
     var self = this;
     self.messages = [];
-
-
+    //var isTouch = MobileService.isMobile();
+    //var clickEvt = isTouch ? 'tap' : 'click'
+    //var clickEvt = 'touchstart click';
+    var clickEvt = 'click';
     SocketService.on('msg to user', function(data){
       $scope.$apply(function(){
         self.messages.push(data);
@@ -53,16 +56,19 @@
       var chat = $element.find('.chat').first();
       var textArea = $element.find('.chat textarea').first();
 
-      chat.on('click', function (e){
+      chat.on(clickEvt, function (e){
         /*if ($(this).is('.ui-draggable-dragging')){
           console.log('is dragging');
           return; // in drag mode l'elemento acquisisce da jqueryUI.js questa nuova classe
           //bisogna evitare una sovrapposizione tra click e drag
         }*/
+        e.preventDefault();
+        e.stopPropagation();
+        if($rootScope.isDragging)
+          return $scope.$apply(function(){self.chatOpened = false;});
 
+        chat.data('draggable') && chat.draggable('disable');
         $scope.$apply(function(){
-          chat.draggable('disable');
-          e.stopPropagation();
           var chatOpened = true;
           self.lastMsgRead = true;
           chat.removeClass('chat__closed').addClass('chat__opened')
@@ -71,16 +77,16 @@
       });
 
 
-      $document.on('click', handlerDocClick);
+      $document.on(clickEvt, handlerDocClick);
 
       $scope.$on('$destroy', function(){
         $document.off('click', handlerDocClick);
       })
 
       function handlerDocClick(){
+        chat.data('draggable') && chat.draggable('enable');
         $scope.$apply(function(){
           if(self.chatOpened){
-            chat.draggable('enable');
             self.chatOpened = false;
             chat.removeClass('chat__opened').addClass('chat__closed');
           }
