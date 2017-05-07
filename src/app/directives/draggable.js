@@ -5,8 +5,7 @@
       link: function(scope, elem, attrs){
         elem.draggable({
           appendTo: "body",
-          helper: "clone",
-          revert: 'invalid'
+          containment: "body"
         });
       }
 
