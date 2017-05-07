@@ -1,7 +1,11 @@
-<div class="chat">
+<div class="chat" draggable>
   <div style="position: relative; width: 100%; height: 100%">
+
     <img ng-show="!$ctrl.chatOpened" class="chat__logo" ng-src="assets/images/chat.png"
       alt="no img">
+    <img ng-if="$ctrl.lastMsgRead === false" ng-src="assets/images/one-message.png"
+      class="chat__toread" alt="no img">
+
     <div ng-if="$ctrl.chatOpened" style="text-align: center; color: grey">
       Today
     </div>
@@ -13,7 +17,7 @@
         </div>
         <div class="chat__col10">
           <span class="chat__username">{{message.name}}</span>
-          <span class="chat__message">{{message.text}}</span>
+          <span class="chat__message">{{message.msg}}</span>
         </div>
       </div>
 

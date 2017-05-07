@@ -15,6 +15,13 @@
     width: 32px;
     height: 32px;
   }
+  &__toread{
+    position: absolute;
+    top: -5px;
+    right: -18px;
+    width: 16px;
+    height: 16px;
+  }
   &__container{
     position: relative;
     width: 100%;

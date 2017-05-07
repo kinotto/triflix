@@ -19,7 +19,7 @@
           class="card__cta" ng-disabled="user.data.facebook.id === multiplayer.user.facebook.id">Invite</button>
         <button ng-show="!inviteSent && !user.online" ng-click="multiplayer.inviteFriend(user); inviteSent = true"
           class="card__cta" ng-disabled="user.data.facebook.id === multiplayer.user.facebook.id">Invite</button>
-        <button ng-show="inviteSent" ng-disabled="inviteSent" class="card__cta">Invite sent..</button>
+        <button ng-show="inviteSent" ng-disabled="inviteSent" class="card__cta">Invite<br/>sent</button>
         <!--<div class="overlay">
           <span class="circle animated infinite pulse"
             ng-class="{'offline' : !user.online, 'online': user.online}"></span>

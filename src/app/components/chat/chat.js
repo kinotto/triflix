@@ -8,28 +8,44 @@
     controller: chatCtrl
   });
 
-  chatCtrl.$inject = ['$element', '$scope', '$timeout', '$document', 'UserService'];
+  chatCtrl.$inject = ['$element', '$scope', '$timeout', '$document', 'UserService',
+  'SocketService'];
 
 
-  function chatCtrl($element, $scope, $timeout, $document, UserService){
+  function chatCtrl($element, $scope, $timeout, $document, UserService, SocketService){
     var self = this;
     self.messages = [];
+
+
+    SocketService.on('msg to user', function(data){
+      $scope.$apply(function(){
+        self.messages.push(data);
+        if(self.chatOpened)
+          self.lastMsgRead = true;
+        else
+          self.lastMsgRead = false;
+      })
+    })
 
     self.addMessage = function(e){
       var chatContainer = $element.find('.chat__container').first();
       self.user = UserService.getUser();
-      self.messages.push({
+      var newMessage = {
         img: self.user.facebook.img,
         name: self.user.facebook.name,
-        text: self.message
-      })
-      self.message = "";
+        msg: self.message
+      }
+      self.messages.push(newMessage);
       e.preventDefault(); //impedisco all'invio di andare a capo
       //aspetto la fine di questo digest così si aggiorna il div
       //con la nuova altezza e posso scrollare fino in basso
       $timeout(function(){
         chatContainer[0].scrollTop = chatContainer[0].scrollHeight; //scrollo giù
       },0, false);
+      SocketService.emit('msg to user', _.extend({
+        socketTo: SocketService.getOpponent().opponentSocketId,
+      }, newMessage))
+      self.message = "";
     }
 
     self.$postLink = function(){
@@ -41,6 +57,7 @@
         $scope.$apply(function(){
           e.stopPropagation();
           var chatOpened = true;
+          self.lastMsgRead = true;
           chat.removeClass('chat__closed').addClass('chat__opened')
           $timeout(function(){self.chatOpened = chatOpened}, 1000);
         })
@@ -61,6 +78,7 @@
           }
         })
       }
+
     }
   }
 
