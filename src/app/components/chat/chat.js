@@ -54,6 +54,10 @@
       var textArea = $element.find('.chat textarea').first();
 
       chat.on('click', function (e){
+        if ($(this).is('.ui-draggable-dragging')){
+          return; // in drag mode l'elemento acquisisce questa nuova classe
+          //bisogna evitare una sovrapposizione tra click e drag
+        }
         $scope.$apply(function(){
           e.stopPropagation();
           var chatOpened = true;
