@@ -54,12 +54,14 @@
       var textArea = $element.find('.chat textarea').first();
 
       chat.on('click', function (e){
-        if ($(this).is('.ui-draggable-dragging')){
+        /*if ($(this).is('.ui-draggable-dragging')){
           console.log('is dragging');
           return; // in drag mode l'elemento acquisisce da jqueryUI.js questa nuova classe
           //bisogna evitare una sovrapposizione tra click e drag
-        }
+        }*/
+
         $scope.$apply(function(){
+          chat.draggable('disable');
           e.stopPropagation();
           var chatOpened = true;
           self.lastMsgRead = true;
@@ -78,6 +80,7 @@
       function handlerDocClick(){
         $scope.$apply(function(){
           if(self.chatOpened){
+            chat.draggable('enable');
             self.chatOpened = false;
             chat.removeClass('chat__opened').addClass('chat__closed');
           }
