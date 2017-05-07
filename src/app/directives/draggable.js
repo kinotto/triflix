@@ -6,7 +6,6 @@
         elem.draggable({
           appendTo: "body",
           helper: "clone",
-          containment: "document",
           revert: 'invalid'
         });
       }
