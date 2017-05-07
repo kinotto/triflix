@@ -4,7 +4,9 @@
     var ddo = {
       link: function(scope, elem, attrs){
         elem.draggable({
-          appendTo: "body"
+          appendTo: "body",
+          containment: "document",
+          revert: 'invalid'
         });
       }
 
