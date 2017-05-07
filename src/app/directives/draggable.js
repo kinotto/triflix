@@ -3,7 +3,9 @@
   .directive('draggable', [function(){
     var ddo = {
       link: function(scope, elem, attrs){
-        elem.draggable();
+        elem.draggable({
+          appendTo: "body"
+        });
       }
 
     }

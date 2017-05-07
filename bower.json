@@ -22,7 +22,8 @@
     "tictactoe-ai": "^1.0.3",
     "bootstrap-social": "^5.1.1",
     "socket.io-client": "^1.7.2",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "jqueryui-touch-punch": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

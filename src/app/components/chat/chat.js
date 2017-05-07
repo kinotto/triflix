@@ -55,7 +55,8 @@
 
       chat.on('click', function (e){
         if ($(this).is('.ui-draggable-dragging')){
-          return; // in drag mode l'elemento acquisisce questa nuova classe
+          console.log('is dragging');
+          return; // in drag mode l'elemento acquisisce da jqueryUI.js questa nuova classe
           //bisogna evitare una sovrapposizione tra click e drag
         }
         $scope.$apply(function(){
