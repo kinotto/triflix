@@ -9,24 +9,22 @@
     margin-bottom: 5px;
     transition: all .2s;
     cursor: pointer;
-    &--local{
-      padding: 20px;
-      border: 2px solid $col2;
-    }
-    &--facebook{
-      padding: 20px;
-      border: 2px solid $col3;
-    }
-    &--realtime{
-      padding: 20px;
-      border: 2px solid $col5;
-    }
-    &--settings{
-      padding: 20px;
-      border: 2px solid $col7;
-    }
+    padding: 20px;
   }
   &--button:hover{
     transform:scale(1.02);
+  }
+  
+  .login--button.login--button--local{
+    border: 2px solid $col2;
+  }
+  .login--button.login--button--facebook{
+    border: 2px solid $col3;
+  }
+  .login--button.login--button--realtime{
+    border: 2px solid $col5;
+  }
+  .login--button.login--button--settings{
+    border: 2px solid $col7;
   }
 }
