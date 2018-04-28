@@ -10,7 +10,7 @@
     "start": "node server",
     "start-dev": "gulp serve",
     "build": "gulp build",
-    "postinstall": "bower cache clean && npm cache clean"
+    "postinstallssss": "bower cache clean && npm cache clean"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
