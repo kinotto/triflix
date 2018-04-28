@@ -37,7 +37,7 @@
       return UserService.getFBfriendsWithApp(params)
       .then(function(resp){
         [].push.apply(self.fbFriends, resp.data.data);
-        if(resp.data.paging.next)
+        if(resp.data.paging && resp.data.paging.next)
           getfbFriends({nextPage: resp.data.paging.next});
       }, function(err){
         console.log(err);
